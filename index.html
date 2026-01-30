@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LITD C.I.C - Light In The Darkness</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Color Variables */
+            --cream: #F6F1E7;
+            --cream-dark: #D4C9B5;
+            --forest: #1F3D2B;
+            --forest-light: #4B5F55;
+            --gold: #e3a53e;
+            --charcoal: #071f23;
+            --off-white: #FAFAF8;
+            --sage: #8B9A92;
+            --white: #ffffff;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            
+            /* Border Radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            
+            /* Shadows */
+            --shadow-soft: 0 4px 20px -4px rgba(7, 31, 35, 0.08);
+            --shadow-lifted: 0 10px 40px -10px rgba(7, 31, 35, 0.15);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: var(--cream);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-md) 0;
+        }
+        
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-desktop {
+            display: none;
+        }
+        
+        .nav-desktop a {
+            margin-left: var(--spacing-xl);
+            font-size: 0.875rem;
+            color: var(--charcoal);
+            transition: opacity 0.3s ease;
+        }
+        
+        .nav-desktop a:hover {
+            opacity: 0.7;
+        }
+        
+        .mobile-menu-btn {
+            background: none;
+            border: none;
+            color: var(--charcoal);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .nav-mobile {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--cream);
+            border-top: 1px solid var(--cream-dark);
+            padding: var(--spacing-md);
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .nav-mobile.hidden {
+            display: none;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            margin-top: 80px;
+        }
+        
+        .hero-grid {
+            display: flex;
+            flex-direction: column;
+            min-height: calc(100vh - 80px);
+        }
+        
+        .hero-left {
+            width: 100%;
+            background-image: radial-gradient(var(--cream-dark) 1.5px, transparent 1.5px);
+            background-size: 24px 24px;
+            background-color: var(--cream);
+            padding: var(--spacing-xl) var(--spacing-md);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .decorative-circle {
+            position: absolute;
+            width: 192px;
+            height: 192px;
+            border-radius: 50%;
+            background: rgba(7, 31, 35, 0.03);
+            top: 10%;
+            right: -48px;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 500px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--forest);
+            line-height: 1.1;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .hero p {
+            font-size: 1rem;
+            color: var(--forest-light);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-lg);
+            max-width: 400px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+        }
+        
+        .btn-hero {
+            background-color: var(--gold);
+            color: var(--charcoal);
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-hero:hover {
+            background-color: #d4952e;
+            transform: translateY(-2px);
+        }
+        
+        .play-button-container {
+            position: relative;
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+        }
+        
+        .play-button {
+            width: 48px;
+            height: 48px;
+            border: 1px solid var(--sage);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .play-button-container:hover .play-button {
+            transform: scale(1.05);
+        }
+        
+        .play-icon {
+            width: 16px;
+            height: 16px;
+            color: var(--sage);
+            fill: var(--sage);
+            margin-left: 2px;
+        }
+        
+        .rotating-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            animation: rotate-slow 10s linear infinite;
+        }
+        
+        @keyframes rotate-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .social-links {
+            position: absolute;
+            bottom: var(--spacing-xl);
+            left: var(--spacing-md);
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+        
+        .social-links a {
+            font-size: 0.75rem;
+            color: var(--sage);
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--charcoal);
+        }
+        
+        .hero-right {
+            width: 100%;
+            background-color: var(--forest);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-md);
+            min-height: 50vh;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            max-height: 70vh;
+        }
+        
+        /* Mission Banner */
+        .mission-banner {
+            background-color: var(--charcoal);
+            padding: var(--spacing-sm) var(--spacing-md);
+        }
+        
+        .mission-banner p {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.875rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        /* Stats Bar */
+        .stats-bar {
+            background-color: var(--charcoal);
+            padding: var(--spacing-lg) var(--spacing-md);
+        }
+        
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+        
+        .stat-item {
+            text-align: center;
+            color: var(--white);
+            width: 45%;
+        }
+        
+        .stat-icon {
+            width: 28px;
+            height: 28px;
+            margin: 0 auto var(--spacing-sm);
+            stroke-width: 1.5;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            opacity: 0.85;
+        }
+        
+        /* Section Common Styles */
+        .section {
+            padding: var(--spacing-2xl) var(--spacing-md);
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto var(--spacing-2xl);
+        }
+        
+        .section-subtitle {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--forest);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .section-description {
+            color: var(--forest-light);
+            line-height: 1.6;
+        }
+        
+        /* About Section */
+        .about-grid {
+            display: grid;
+            gap: var(--spacing-2xl);
+        }
+        
+        .about-content h2 {
+            font-size: 2rem;
+            color: var(--forest);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .about-text {
+            color: var(--forest-light);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .approach-card {
+            background-color: var(--cream);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-md);
+        }
+        
+        .approach-card h3 {
+            font-size: 1.125rem;
+            color: var(--charcoal);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-md);
+        }
+        
+        .approach-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+        }
+        
+        .approach-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(227, 165, 62, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .approach-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--gold);
+        }
+        
+        .approach-details h4 {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: 0.25rem;
+        }
+        
+        .approach-details p {
+            font-size: 0.75rem;
+            color: var(--forest-light);
+        }
+        
+        .about-image-container {
+            position: relative;
+        }
+        
+        .about-image {
+            width: 100%;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lifted);
+            object-fit: cover;
+            aspect-ratio: 4/5;
+        }
+        
+        .year-badge {
+            position: absolute;
+            bottom: -24px;
+            left: -24px;
+            background-color: var(--forest);
+            color: var(--white);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lifted);
+            z-index: 20;
+        }
+        
+        .year-badge .number {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .year-badge .label {
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+        
+        /* Why Section */
+        .why-section {
+            background-color: var(--charcoal);
+            color: var(--white);
+        }
+        
+        .why-grid {
+            display: grid;
+            gap: var(--spacing-2xl);
+        }
+        
+        .why-content h2 {
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .why-text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .highlight-box {
+            background-color: rgba(31, 61, 43, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .highlight-box p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .challenges-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+        
+        .challenge-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-md);
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-md);
+            padding: var(--spacing-md);
+        }
+        
+        .challenge-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(227, 165, 62, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .challenge-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--gold);
+        }
+        
+        .challenge-text {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+            padding-top: 0.5rem;
+        }
+        
+        /* Services Section */
+        .services-section {
+            background-color: var(--off-white);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lifted);
+        }
+        
+        .service-header {
+            height: 96px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .service-header.gold {
+            background-color: rgba(227, 165, 62, 0.1);
+        }
+        
+        .service-header.green {
+            background-color: rgba(31, 61, 43, 0.1);
+        }
+        
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .service-icon.gold {
+            background-color: var(--gold);
+        }
+        
+        .service-icon.green {
+            background-color: var(--forest);
+        }
+        
+        .service-icon svg {
+            width: 32px;
+            height: 32px;
+            color: var(--white);
+        }
+        
+        .service-body {
+            padding: var(--spacing-lg);
+        }
+        
+        .service-body h3 {
+            font-size: 1.25rem;
+            color: var(--charcoal);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .service-description {
+            font-size: 0.875rem;
+            color: var(--forest-light);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .features-list {
+            list-style: none;
+        }
+        
+        .features-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--forest-light);
+            margin-bottom: 0.5rem;
+        }
+        
+        .features-list svg {
+            width: 16px;
+            height: 16px;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+        
+        .cta-card {
+            background-color: var(--forest);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .cta-card h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .cta-card p {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin-bottom: var(--spacing-md);
+            max-width: 200px;
+        }
+        
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--charcoal);
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gold:hover {
+            background-color: #d4952e;
+        }
+        
+        /* Impact Section */
+        .impact-grid {
+            display: grid;
+            gap: var(--spacing-2xl);
+        }
+        
+        .impact-model {
+            background-color: var(--cream);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+        }
+        
+        .impact-model-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .impact-model-header svg {
+            width: 32px;
+            height: 32px;
+            color: var(--gold);
+        }
+        
+        .impact-model-header h3 {
+            font-size: 1.25rem;
+            color: var(--charcoal);
+        }
+        
+        .impact-items-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-sm);
+        }
+        
+        .impact-item {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+        }
+        
+        .impact-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lifted);
+        }
+        
+        .impact-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: rgba(31, 61, 43, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .impact-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--forest);
+        }
+        
+        .impact-item h4 {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: 0.25rem;
+        }
+        
+        .impact-item p {
+            font-size: 0.75rem;
+            color: var(--forest-light);
+        }
+        
+        /* Get Involved Section */
+        .get-involved-grid {
+            display: grid;
+            gap: var(--spacing-2xl);
+        }
+        
+        .ways-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .way-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+        }
+        
+        .way-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(227, 165, 62, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .way-icon svg {
+            width: 20px;
+            height: 20px;
+            color: var(--gold);
+        }
+        
+        .way-details h4 {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--charcoal);
+            margin-bottom: 0.25rem;
+        }
+        
+        .way-details p {
+            font-size: 0.75rem;
+            color: var(--forest-light);
+        }
+        
+        .contact-card {
+            background-color: var(--forest);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            color: var(--white);
+        }
+        
+        .contact-card h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .contact-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .contact-stats {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .contact-stat {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .contact-stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-stat-icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--charcoal);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--charcoal);
+            color: var(--white);
+        }
+        
+        .footer-content {
+            padding: var(--spacing-2xl) var(--spacing-md);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-2xl);
+        }
+        
+        .footer-brand {
+            grid-column: 1 / -1;
+        }
+        
+        .footer-brand h3 {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+            max-width: 400px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--gold);
+        }
+        
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .footer-links h4 {
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .footer-links a {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+        
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .footer-contact-icon {
+            width: 16px;
+            height: 16px;
+            color: var(--gold);
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+        
+        .footer-contact-text {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-contact-text a:hover {
+            color: var(--gold);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: var(--spacing-md) var(--spacing-md);
+        }
+        
+        .footer-bottom-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: var(--spacing-sm);
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Responsive Styles */
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.125rem;
+            }
+            
+            .hero-grid {
+                flex-direction: row;
+            }
+            
+            .hero-left {
+                width: 45%;
+                padding: var(--spacing-xl);
+            }
+            
+            .hero-right {
+                width: 55%;
+                min-height: 0;
+                padding: var(--spacing-lg);
+            }
+            
+            .hero-image {
+                border-radius: 0;
+                max-height: none;
+            }
+            
+            .decorative-circle {
+                width: 256px;
+                height: 256px;
+                right: -64px;
+            }
+            
+            .nav-desktop {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .section {
+                padding: var(--spacing-2xl) var(--spacing-lg);
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .stats-grid {
+                flex-wrap: nowrap;
+                gap: var(--spacing-md);
+            }
+            
+            .stat-item {
+                width: auto;
+            }
+            
+            .stat-number {
+                font-size: 1.75rem;
+            }
+            
+            .stat-label {
+                font-size: 0.875rem;
+            }
+            
+            .about-grid,
+            .why-grid,
+            .get-involved-grid {
+                grid-template-columns: repeat(2, 1fr);
+                align-items: center;
+                gap: var(--spacing-2xl);
+            }
+            
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+                align-items: start;
+                gap: var(--spacing-2xl);
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .footer-brand {
+                grid-column: span 2;
+            }
+            
+            .footer-bottom-content {
+                flex-direction: row;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .section {
+                padding: var(--spacing-2xl) var(--spacing-xl);
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .hero-left {
+                padding: var(--spacing-2xl);
+            }
+            
+            .hero-right {
+                padding: var(--spacing-xl);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">LITD C.I.C</a>
+                
+                <nav class="nav-desktop">
+                    <a href="about.html">About Us</a>
+                    <a href="services.html">Services</a>
+                    <a href="#impact">Our Impact</a>
+                    <a href="#contact">Contact Us</a>
+                </nav>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="nav-mobile hidden" id="mobileMenu">
+                <a href="#about">About Us</a>
+                <a href="#services">Services</a>
+                <a href="#impact">Our Impact</a>
+                <a href="#contact">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-grid">
+            <div class="hero-left">
+                <div class="decorative-circle"></div>
+                
+                <div class="hero-content">
+                    <h1>Care And Aid<br>For All Our<br>Life Now.</h1>
+                    
+                    <p>We support individuals, families, and communities through practical care, wellbeing services, and empowerment programmes that build resilience, restore hope, and create lasting positive change.</p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn-hero">Donate Now</a>
+                        
+                        <div class="play-button-container">
+                            <div class="play-button">
+                                <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </div>
+                            
+                            <svg class="rotating-text" viewBox="0 0 100 100">
+                                <path id="curve" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent"></path>
+                                <text font-size="9" fill="#8B9A92" text-transform="uppercase" letter-spacing="0.1em">
+                                    <textPath href="#curve" startOffset="0%">LEARN ABOUT OUR MISSION •</textPath>
+                                </text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#youtube">Youtube</a>
+                    <a href="#facebook">Facebook</a>
+                    <a href="#instagram">Instagram</a>
+                </div>
+            </div>
+            
+            <div class="hero-right">
+                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=900&fit=crop" alt="Diverse group of people hugging, showing community support" class="hero-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Banner -->
+    <div class="mission-banner">
+        <p>LITD CIC delivers safeguarding-led support that helps vulnerable young people and displaced adults rebuild stability, develop independence, and integrate positively into their communities.</p>
+    </div>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">People Supported</div>
+                </div>
+                
+                <div class="stat-item">
+                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support Available</div>
+                </div>
+                
+                <div class="stat-item">
+                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    <div class="stat-number">Since 2017</div>
+                    <div class="stat-label">Established</div>
+                </div>
+                
+                <div class="stat-item">
+                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Dedication</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <p class="section-subtitle">About Us</p>
+                    <h2 class="section-title">Light In The Darkness (LITD C.I.C.)</h2>
+                    
+                    <p class="about-text">Light In The Darkness is a Community Interest Company based in Greater Manchester, dedicated to bringing hope, practical support, and advocacy to society's most vulnerable individuals.</p>
+                    
+                    <p class="about-text">We work with marginalised families and individuals who struggle to access statutory services. Through personalised, compassionate interventions, we empower people facing hardship to regain stability, confidence, and independence.</p>
+                    
+                    <div class="approach-card">
+                        <h3>Person-Centred and Strength-Based Approach</h3>
+                        <p class="about-text">We identify individuals and families who are not receiving the support they need and provide care tailored to their unique circumstances.</p>
+                        
+                        <div class="approach-grid">
+                            <div class="approach-item">
+                                <div class="approach-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </div>
+                                <div class="approach-details">
+                                    <h4>Counselling</h4>
+                                    <p>Professional emotional and psychological support</p>
+                                </div>
+                            </div>
+                            
+                            <div class="approach-item">
+                                <div class="approach-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg>
+                                </div>
+                                <div class="approach-details">
+                                    <h4>Coaching</h4>
+                                    <p>Building confidence, resilience, and self-belief</p>
+                                </div>
+                            </div>
+                            
+                            <div class="approach-item">
+                                <div class="approach-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                        <path d="M18 22l3.35-3.284a2.143 2.143 0 0 0 .005-3.071a2.242 2.242 0 0 0-3.129-.006l-.224.22l-.223-.22a2.242 2.242 0 0 0-3.128-.006a2.143 2.143 0 0 0-.006 3.071L18 22z"></path>
+                                    </svg>
+                                </div>
+                                <div class="approach-details">
+                                    <h4>Practical Assistance</h4>
+                                    <p>Helping with everyday challenges</p>
+                                </div>
+                            </div>
+                            
+                            <div class="approach-item">
+                                <div class="approach-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    </svg>
+                                </div>
+                                <div class="approach-details">
+                                    <h4>Peer Support</h4>
+                                    <p>Attending appointments and ensuring voices are heard</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image-container">
+                    <div class="decorative-circle" style="width: 288px; height: 288px; top: -40px; right: -40px;"></div>
+                    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&h=700&fit=crop" alt="Community support and care" class="about-image">
+                    <div class="year-badge">
+                        <div class="number">2017</div>
+                        <div class="label">Established</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Section -->
+    <section class="section why-section" id="why">
+        <div class="container">
+            <div class="why-grid">
+                <div class="why-content">
+                    <p class="section-subtitle">Why Our Work Matters</p>
+                    <h2 class="section-title">Bridging the Gap When Systems Fail</h2>
+                    
+                    <p class="why-text">In an ideal system, statutory services would support individuals before they reach crisis point. In reality, many only receive help when they are already in severe distress.</p>
+                    
+                    <p class="why-text">Since 2017, we have witnessed systemic bias and institutional barriers within healthcare, education, social services, and the justice system. These failures disproportionately affect vulnerable communities and often go unchallenged.</p>
+                    
+                    <div class="highlight-box">
+                        <p><strong>LITD exists to bridge this gap, advocate for fairness, and ensure dignity is upheld.</strong></p>
+                        <p style="font-size: 0.875rem; margin-top: 0.5rem;">When accountability is resisted, advocacy becomes essential. We stand alongside our beneficiaries to ensure they are treated fairly.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="font-size: 1.25rem; margin-bottom: var(--spacing-lg);">The Reality on the Ground</h3>
+                    <p class="why-text">We regularly support individuals facing:</p>
+                    
+                    <div class="challenges-list">
+                        <div class="challenge-item">
+                            <div class="challenge-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                </svg>
+                            </div>
+                            <p class="challenge-text">Children unable to attend school due to unresolved safeguarding issues</p>
+                        </div>
+                        
+                        <div class="challenge-item">
+                            <div class="challenge-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                            </div>
+                            <p class="challenge-text">Parents and children experiencing suicidal thoughts due to neglect</p>
+                        </div>
+                        
+                        <div class="challenge-item">
+                            <div class="challenge-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 9l9-7l9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </div>
+                            <p class="challenge-text">Families living in unsafe housing conditions</p>
+                        </div>
+                        
+                        <div class="challenge-item">
+                            <div class="challenge-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                </svg>
+                            </div>
+                            <p class="challenge-text">Young people experiencing hate crimes without adequate intervention</p>
+                        </div>
+                        
+                        <div class="challenge-item">
+                            <div class="challenge-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                </svg>
+                            </div>
+                            <p class="challenge-text">Individuals trapped in mental health crises within rigid systems</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services-section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Our Services</p>
+                <h2 class="section-title">Supporting the Disadvantaged With Care, Dignity, and Purpose</h2>
+                <p class="section-description">As a Community Interest Company, LITD C.I.C. delivers holistic, person-centred support to individuals, families, and young people facing social, emotional, and economic challenges.</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-header gold">
+                        <div class="service-icon gold">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="service-body">
+                        <h3>Mental Health Support</h3>
+                        <p class="service-description">Accessible mental health and wellbeing support through trusted professionals and community-based initiatives.</p>
+                        
+                        <ul class="features-list">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Partnerships with psychologists
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Counselling and therapy
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Mental health workshops
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                PTSD support
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-header green">
+                        <div class="service-icon green">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="service-body">
+                        <h3>Youth Empowerment</h3>
+                        <p class="service-description">We work with young people to prevent disengagement, build confidence, and create positive pathways for the future.</p>
+                        
+                        <ul class="features-list">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Digital and sports initiatives
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                6-month entrepreneurship programme
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Volunteering opportunities
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Leadership skills
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-header gold">
+                        <div class="service-icon gold">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="service-body">
+                        <h3>Educational Opportunities</h3>
+                        <p class="service-description">Supporting individuals, especially women from marginalised communities, to access education and achieve independence.</p>
+                        
+                        <ul class="features-list">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Recognised qualifications
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Leadership training
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Hair wrapping sessions
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                CIC start-up support
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <div class="service-header green">
+                        <div class="service-icon green">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="service-body">
+                        <h3>Social Prescribing</h3>
+                        <p class="service-description">Non-clinical support that addresses the root causes of poor wellbeing and social exclusion.</p>
+                        
+                        <ul class="features-list">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Grief support
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Domestic violence pathways
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Walking groups
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Befriending programmes
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card">
+                    <div class="service-header gold">
+                        <div class="service-icon gold">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 2h7c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2z"></path>
+                                <path d="M14 2h7c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2h-7c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2z"></path>
+                                <line x1="7" y1="12" x2="17" y2="12"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="service-body">
+                        <h3>Culturally Appropriate Food Bank</h3>
+                        <p class="service-description">Addressing a critical gap in traditional food aid services by ensuring dignity and cultural familiarity.</p>
+                        
+                        <ul class="features-list">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Food support during benefits wait
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Culturally appropriate items
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                African chef collaboration
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Nutritional suitability
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- CTA Card -->
+                <div class="cta-card">
+                    <h3>Contribute Today To Make A Difference</h3>
+                    <p>Your contribution makes change possible today.</p>
+                    
+                    <!-- Curved arrow SVG -->
+                    <svg style="width: 80px; height: 64px; margin-bottom: var(--spacing-md);" viewBox="0 0 100 60" fill="none" stroke="hsl(40 70% 50%)" stroke-width="2">
+                        <path d="M20,30 Q35,10 50,30 T80,30" stroke-linecap="round"></path>
+                        <path d="M75,25 L80,30 L75,35" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    
+                    <a href="#contact" class="btn-gold">Give Gift Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="section" id="impact">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Our Impact</p>
+                <h2 class="section-title">Making Real Change</h2>
+                <p class="section-description">Every statistic represents a real person, a real family, and a real story of hope.</p>
+            </div>
+            
+            <div class="impact-grid">
+                <div class="impact-model">
+                    <div class="impact-model-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="2"></circle>
+                        </svg>
+                        <h3>Our Support Model</h3>
+                    </div>
+                    
+                    <div style="margin-bottom: var(--spacing-lg);">
+                        <h4 style="font-weight: 500; color: var(--charcoal); margin-bottom: 0.5rem;">The Need</h4>
+                        <p style="font-size: 0.875rem; color: var(--forest-light); line-height: 1.6;">We primarily support individuals from Global Majority communities affected by trauma, systemic oppression, poverty, and poor mental or physical health. Rather than defining people by their struggles, we focus on their strengths, skills, and potential.</p>
+                    </div>
+                    
+                    <div>
+                        <h4 style="font-weight: 500; color: var(--charcoal); margin-bottom: 0.5rem;">Our Purpose</h4>
+                        <p style="font-size: 0.875rem; color: var(--forest-light); line-height: 1.6;">We help individuals reconnect with their abilities, rebuild confidence and self-worth, navigate ongoing barriers such as poverty, racism, and health challenges, and move forward with dignity and hope.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="font-size: 1.25rem; color: var(--charcoal); margin-bottom: var(--spacing-lg);">Intended Impact</h3>
+                    <div class="impact-items-grid">
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <h4>Reduce Social Isolation</h4>
+                            <p>Connecting individuals with communities</p>
+                        </div>
+                        
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                            </div>
+                            <h4>Restore Purpose</h4>
+                            <p>Supporting recovery and aspiration</p>
+                        </div>
+                        
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                </svg>
+                            </div>
+                            <h4>Develop Skills</h4>
+                            <p>Building employability and life skills</p>
+                        </div>
+                        
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </div>
+                            <h4>Strengthen Accountability</h4>
+                            <p>Advocating for fairness in systems</p>
+                        </div>
+                        
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                </svg>
+                            </div>
+                            <h4>Celebrate Culture</h4>
+                            <p>Embracing diversity and heritage</p>
+                        </div>
+                        
+                        <div class="impact-item">
+                            <div class="impact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    <polyline points="17 6 23 6 23 12"></polyline>
+                                </svg>
+                            </div>
+                            <h4>Sustainable Growth</h4>
+                            <p>Generating impact through our CIC model</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="get-involved-grid">
+                <div>
+                    <p class="section-subtitle">Get Involved</p>
+                    <h2 class="section-title">Join Our Mission</h2>
+                    <p class="section-description">There are many ways to support and engage with LITD C.I.C. Whether you want to volunteer, partner with us, refer someone who needs support, or fund our programmes, your involvement makes a real difference.</p>
+                    
+                    <div class="ways-grid">
+                        <div class="way-item">
+                            <div class="way-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    <path d="M18 22l3.35-3.284a2.143 2.143 0 0 0 .005-3.071a2.242 2.242 0 0 0-3.129-.006l-.224.22l-.223-.22a2.242 2.242 0 0 0-3.128-.006a2.143 2.143 0 0 0-.006 3.071L18 22z"></path>
+                                </svg>
+                            </div>
+                            <div class="way-details">
+                                <h4>Volunteer</h4>
+                                <p>Share your time or skills</p>
+                            </div>
+                        </div>
+                        
+                        <div class="way-item">
+                            <div class="way-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <div class="way-details">
+                                <h4>Partner With Us</h4>
+                                <p>Collaborate on initiatives</p>
+                            </div>
+                        </div>
+                        
+                        <div class="way-item">
+                            <div class="way-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="18" cy="5" r="3"></circle>
+                                    <circle cx="6" cy="12" r="3"></circle>
+                                    <circle cx="18" cy="19" r="3"></circle>
+                                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                </svg>
+                            </div>
+                            <div class="way-details">
+                                <h4>Refer Someone</h4>
+                                <p>Connect those who need support</p>
+                            </div>
+                        </div>
+                        
+                        <div class="way-item">
+                            <div class="way-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    <path d="M18 15l-6-6l-6 6"></path>
+                                </svg>
+                            </div>
+                            <div class="way-details">
+                                <h4>Support Our Programmes</h4>
+                                <p>Fund meaningful change</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="mailto:contact@litdcic.org" class="btn-hero" style="display: inline-block; margin-top: var(--spacing-md);">Contact Us Today</a>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Be Part of Meaningful Change</h3>
+                    <p>Your support helps us continue providing essential services to those who need them most. Every contribution, whether time, skills, or financial, creates ripples of positive change in our communities.</p>
+                    
+                    <div class="contact-stats">
+                        <div class="contact-stat">
+                            <div class="contact-stat-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p style="font-weight: 500;">1000+ People Supported</p>
+                                <p style="font-size: 0.875rem; opacity: 0.7;">Since 2017</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-stat">
+                            <div class="contact-stat-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    <path d="M18 15l-6-6l-6 6"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p style="font-weight: 500;">24/7 Support Available</p>
+                                <p style="font-size: 0.875rem; opacity: 0.7;">Always here when needed</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="mailto:contact@litdcic.org" class="btn-gold" style="width: 100%; text-align: center; display: block;">Donate Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <h3>LITD C.I.C</h3>
+                        <p>Light In The Darkness is a Community Interest Company dedicated to bringing hope, practical support, and advocacy to society's most vulnerable individuals.</p>
+                        
+                        <div class="social-icons">
+                            <a href="#youtube" class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+                                    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+                                </svg>
+                            </a>
+                            
+                            <a href="#facebook" class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                                </svg>
+                            </a>
+                            
+                            <a href="#instagram" class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#services">Our Services</a></li>
+                            <li><a href="#impact">Our Impact</a></li>
+                            <li><a href="#contact">Get Involved</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li class="footer-contact-item">
+                                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <span class="footer-contact-text">Greater Manchester, UK</span>
+                            </li>
+                            
+                            <li class="footer-contact-item">
+                                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                                <a href="mailto:contact@litdcic.org" class="footer-contact-text">contact@litdcic.org</a>
+                            </li>
+                            
+                            <li class="footer-contact-item">
+                                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                                <span class="footer-contact-text">24/7 Support Available</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; <span id="currentYear"></span> LITD C.I.C. All rights reserved.</p>
+                    <p>Community Interest Company | Registered in England</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            
+            // Change icon
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.className = 'fas fa-bars';
+            } else {
+                icon.className = 'fas fa-times';
+            }
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+            });
+        });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Header shadow on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 10) {
+                header.style.boxShadow = 'var(--shadow-soft)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
