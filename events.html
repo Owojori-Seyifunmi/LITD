@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - LITD C.I.C - Light In The Darkness</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #F6F1E7;
+            --cream-dark: #D4C9B5;
+            --forest: #1F3D2B;
+            --forest-light: #4B5F55;
+            --gold: #e3a53e;
+            --charcoal: #071f23;
+            --off-white: #FAFAF8;
+            --sage: #8B9A92;
+            --white: #ffffff;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            --radius-sm: 0.375rem;
+            --radius-md: 0.75rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            --shadow-soft: 0 4px 20px -4px rgba(7, 31, 35, 0.08);
+            --shadow-lifted: 0 10px 40px -10px rgba(7, 31, 35, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Libre Baskerville', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* ─── HEADER ─── */
+        header {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background-color: var(--cream);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-sm) 0;
+        }
+
+        .logo img { height: 50px; width: auto; }
+
+        .nav-desktop { display: none; }
+        .nav-desktop a {
+            margin-left: var(--spacing-xl);
+            font-size: 0.875rem;
+            color: var(--charcoal);
+            transition: opacity 0.3s ease;
+        }
+        .nav-desktop a:hover { opacity: 0.7; }
+        .nav-desktop a.active { color: var(--gold); font-weight: 600; }
+
+        .mobile-menu-btn {
+            background: none; border: none;
+            color: var(--charcoal); font-size: 1.5rem;
+            cursor: pointer; padding: 0.5rem;
+        }
+
+        .nav-mobile {
+            position: absolute; top: 100%; left: 0; right: 0;
+            background-color: var(--cream);
+            border-top: 1px solid var(--cream-dark);
+            padding: var(--spacing-md);
+            display: flex; flex-direction: column;
+            gap: var(--spacing-md);
+            box-shadow: var(--shadow-soft);
+        }
+        .nav-mobile.hidden { display: none; }
+        .nav-mobile a { font-size: 1rem; color: var(--charcoal); padding: 0.5rem 0; }
+        .nav-mobile a.active { color: var(--gold); font-weight: 600; }
+
+        /* ─── HERO ─── */
+        .events-hero {
+            margin-top: 70px;
+            background-color: var(--charcoal);
+            padding: var(--spacing-2xl) var(--spacing-md);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .events-hero::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: rgba(227, 165, 62, 0.06);
+        }
+
+        .events-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -40px; left: 10%;
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            background: rgba(31, 61, 43, 0.3);
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            font-family: 'Libre Baskerville', serif;
+            letter-spacing: 0.12em;
+            color: var(--gold);
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .events-hero h1 {
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.15;
+        }
+
+        .events-hero p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            max-width: 560px;
+        }
+
+        /* ─── STATS STRIP ─── */
+        .stats-strip {
+            background-color: var(--forest);
+            padding: var(--spacing-lg) var(--spacing-md);
+        }
+
+        .stats-inner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-lg);
+            justify-content: center;
+        }
+
+        .stat-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--white);
+        }
+
+        .stat-pill-icon {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .stat-pill-icon svg { width: 18px; height: 18px; color: var(--gold); }
+        .stat-pill-num { font-size: 1.25rem; font-weight: 700; font-family: 'Libre Baskerville', serif; }
+        .stat-pill-label { font-size: 0.75rem; opacity: 0.8; }
+
+        /* ─── YEAR SECTIONS ─── */
+        .events-section {
+            padding: var(--spacing-2xl) var(--spacing-md);
+        }
+
+        .events-section:nth-child(even) {
+            background-color: var(--off-white);
+        }
+
+        .year-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .year-badge-large {
+            background-color: var(--gold);
+            color: var(--charcoal);
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 0.5rem 1.25rem;
+            border-radius: var(--radius-md);
+            flex-shrink: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .year-divider {
+            flex: 1;
+            height: 1px;
+            background: var(--cream-dark);
+        }
+
+        .year-count {
+            font-size: 0.75rem;
+            color: var(--sage);
+            white-space: nowrap;
+        }
+
+        /* ─── EVENT CARDS ─── */
+        .events-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+        }
+
+        .event-card {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lifted);
+            border-color: rgba(31, 61, 43, 0.15);
+        }
+
+        .event-card-inner {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-date-strip {
+            background-color: var(--forest);
+            color: var(--white);
+            padding: 0.875rem var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .event-date-strip i { color: var(--gold); font-size: 0.875rem; }
+
+        .event-date-text {
+            font-size: 0.8125rem;
+            font-weight: 500;
+        }
+
+        .event-tag {
+            margin-left: auto;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: rgba(227, 165, 62, 0.2);
+            color: var(--gold);
+            padding: 0.2rem 0.6rem;
+            border-radius: 2rem;
+        }
+
+        .event-body {
+            padding: var(--spacing-md);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .event-title {
+            font-size: 1.0625rem;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            line-height: 1.35;
+        }
+
+        .event-excerpt {
+            font-size: 0.875rem;
+            color: var(--forest-light);
+            line-height: 1.5;
+            margin-bottom: var(--spacing-md);
+            flex: 1;
+        }
+
+        .event-location {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8125rem;
+            color: var(--sage);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .event-location i { color: var(--gold); font-size: 0.8125rem; }
+
+        .btn-learn-more {
+            align-self: flex-start;
+            background: none; border: none;
+            color: var(--forest); font-weight: 500;
+            font-size: 0.875rem; cursor: pointer;
+            padding: 0;
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            transition: all 0.25s ease;
+        }
+        .btn-learn-more:hover { color: var(--gold); gap: 0.6rem; }
+
+        /* ─── FEATURED / LARGE EVENT CARD ─── */
+        .event-card.featured {
+            grid-column: 1 / -1;
+        }
+
+        .event-card.featured .event-date-strip {
+            background-color: var(--gold);
+            color: var(--charcoal);
+        }
+
+        .event-card.featured .event-date-strip i { color: var(--charcoal); }
+        .event-card.featured .event-tag {
+            background: rgba(7,31,35,0.15);
+            color: var(--charcoal);
+        }
+
+        .event-card.featured .event-title {
+            font-size: 1.25rem;
+        }
+
+        /* ─── SPECIAL MESSAGES SECTION ─── */
+        .messages-section {
+            padding: var(--spacing-2xl) var(--spacing-md);
+            background-color: var(--off-white);
+            border-top: 1px solid var(--cream-dark);
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .messages-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .messages-header h2 {
+            font-size: 1.75rem;
+            color: var(--charcoal);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .messages-header p {
+            color: var(--forest-light);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 0.9375rem;
+        }
+
+        .messages-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .message-card {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-soft);
+            border-left: 4px solid var(--gold);
+            transition: transform 0.3s ease;
+        }
+
+        .message-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lifted);
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+
+        .message-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(227, 165, 62, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+        }
+
+        .message-sender {
+            flex: 1;
+        }
+
+        .message-sender h3 {
+            font-size: 1.1rem;
+            color: var(--charcoal);
+            margin-bottom: 0.2rem;
+        }
+
+        .message-sender p {
+            font-size: 0.8125rem;
+            color: var(--sage);
+            font-style: italic;
+        }
+
+        .message-content {
+            color: var(--forest-light);
+            font-size: 0.9375rem;
+            line-height: 1.7;
+            font-style: italic;
+            position: relative;
+            padding-left: var(--spacing-md);
+            border-left: 2px solid var(--cream-dark);
+        }
+
+        .message-content p {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .message-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .message-content .emphasis {
+            color: var(--forest);
+            font-weight: 500;
+            font-style: normal;
+            display: block;
+            margin-top: var(--spacing-sm);
+        }
+
+        /* ─── MODAL ─── */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(7, 31, 35, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: var(--spacing-md);
+        }
+
+        .modal-container {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 780px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from { opacity: 0; transform: translateY(-16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-close {
+            position: absolute; top: 1rem; right: 1rem;
+            background: none; border: none;
+            font-size: 1.75rem; color: var(--charcoal);
+            cursor: pointer; z-index: 10;
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .modal-close:hover { background: rgba(7,31,35,0.08); }
+
+        .modal-header {
+            background-color: var(--forest);
+            padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-lg);
+            color: var(--white);
+        }
+
+        .modal-header .modal-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.3;
+        }
+
+        .modal-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+        }
+
+        .modal-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.875rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .modal-meta i { color: var(--gold); }
+
+        .modal-body {
+            padding: var(--spacing-xl);
+        }
+
+        .modal-body p {
+            color: var(--charcoal);
+            line-height: 1.75;
+            margin-bottom: var(--spacing-md);
+            font-size: 0.9375rem;
+        }
+
+        .modal-body h3 {
+            font-size: 1.1rem;
+            color: var(--forest);
+            margin: var(--spacing-lg) 0 var(--spacing-sm);
+        }
+
+        .modal-body ul {
+            margin-left: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .modal-body li {
+            color: var(--forest-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+            line-height: 1.5;
+        }
+
+        /* ─── CTA ─── */
+        .events-cta {
+            background-color: var(--charcoal);
+            padding: var(--spacing-2xl) var(--spacing-md);
+            text-align: center;
+        }
+
+        .events-cta h2 {
+            font-size: 1.75rem;
+            color: var(--white);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .events-cta p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9375rem;
+            margin-bottom: var(--spacing-lg);
+            max-width: 560px;
+            margin-left: auto; margin-right: auto;
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--charcoal);
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: var(--radius-md);
+            font-weight: 600; font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-gold:hover { background-color: #d4952e; transform: translateY(-2px); }
+
+        /* ─── FOOTER ─── */
+        footer { background-color: var(--charcoal); color: var(--white); }
+
+        .footer-content { padding: var(--spacing-2xl) var(--spacing-md); }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-2xl);
+        }
+
+        .footer-brand { grid-column: 1 / -1; }
+        .footer-brand h3 { font-size: 1.25rem; margin-bottom: var(--spacing-sm); }
+        .footer-brand p { color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: var(--spacing-md); max-width: 400px; font-size: 0.9375rem; }
+
+        .social-icons { display: flex; gap: var(--spacing-sm); }
+
+        .social-icon {
+            width: 40px; height: 40px; border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            display: flex; align-items: center; justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        .social-icon:hover { background-color: var(--gold); }
+        .social-icon svg { width: 20px; height: 20px; }
+
+        .footer-links h4 { font-weight: 500; margin-bottom: var(--spacing-sm); }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: var(--spacing-xs); }
+        .footer-links a { font-size: 0.875rem; color: rgba(255,255,255,0.7); transition: color 0.3s; }
+        .footer-links a:hover { color: var(--gold); }
+
+        .footer-contact-item { display: flex; align-items: flex-start; gap: var(--spacing-sm); margin-bottom: var(--spacing-sm); }
+        .footer-contact-icon { width: 16px; height: 16px; color: var(--gold); flex-shrink: 0; margin-top: 0.25rem; }
+        .footer-contact-text { font-size: 0.875rem; color: rgba(255,255,255,0.7); }
+
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding: var(--spacing-md); }
+        .footer-bottom-content {
+            display: flex; flex-direction: column;
+            justify-content: space-between; align-items: center;
+            gap: var(--spacing-sm); font-size: 0.875rem;
+            color: rgba(255,255,255,0.5); text-align: center;
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-up { opacity: 0; }
+        .fade-up.visible { animation: fadeUp 0.55s ease forwards; }
+
+        /* ─── RESPONSIVE ─── */
+        @media (min-width: 640px) {
+            .events-grid { grid-template-columns: repeat(2, 1fr); }
+            .messages-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 768px) {
+            .logo img { height: 60px; }
+            .events-hero { margin-top: 80px; padding: var(--spacing-2xl) var(--spacing-lg); }
+            .events-hero h1 { font-size: 2.75rem; }
+            .nav-desktop { display: flex; }
+            .mobile-menu-btn { display: none; }
+            .events-section { padding: var(--spacing-2xl) var(--spacing-lg); }
+            .events-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(4, 1fr); }
+            .footer-brand { grid-column: span 2; }
+            .footer-bottom-content { flex-direction: row; text-align: left; }
+            .modal-header { padding: var(--spacing-2xl) var(--spacing-2xl) var(--spacing-lg); }
+            .modal-body { padding: var(--spacing-2xl); }
+        }
+
+        @media (min-width: 1024px) {
+            .events-hero { padding: var(--spacing-2xl) var(--spacing-xl); }
+            .events-section { padding: var(--spacing-2xl) var(--spacing-xl); }
+            .events-grid { grid-template-columns: repeat(3, 1fr); }
+            .stats-inner { justify-content: space-around; }
+        }
+
+        @media (max-width: 768px) {
+            .modal-body { padding: var(--spacing-lg) var(--spacing-md); }
+            .modal-header { padding: var(--spacing-lg) var(--spacing-md); }
+            .message-card { padding: var(--spacing-md); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="https://litdcic.com/wp-content/uploads/2026/02/LITD-logo.png" alt="LITD C.I.C Logo">
+                </a>
+                <nav class="nav-desktop">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="teams.html">Our Team</a>
+                    <a href="services.html">Services</a>
+                    <a href="events.html" class="active">Events</a>
+                    <a href="contact.html">Contact Us</a>
+                </nav>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="nav-mobile hidden" id="mobileMenu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="teams.html">Our Team</a>
+                <a href="services.html">Services</a>
+                <a href="events.html" class="active">Events</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="events-hero">
+        <div class="container">
+            <div class="hero-inner">
+                <p class="section-subtitle">Our Track Record</p>
+                <h1>Events &amp; Milestones</h1>
+                <p>Since 2017, Light In The Darkness has been showing up for communities across Greater Manchester. Every event is a step forward — here is the journey so far.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS STRIP -->
+    <div class="stats-strip">
+        <div class="container">
+            <div class="stats-inner">
+                <div class="stat-pill">
+                    <div class="stat-pill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+                    </div>
+                    <div>
+                        <div class="stat-pill-num">Since 2017</div>
+                        <div class="stat-pill-label">Established</div>
+                    </div>
+                </div>
+                <div class="stat-pill">
+                    <div class="stat-pill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <div>
+                        <div class="stat-pill-num">1,000+</div>
+                        <div class="stat-pill-label">People Supported</div>
+                    </div>
+                </div>
+                <div class="stat-pill">
+                    <div class="stat-pill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div>
+                        <div class="stat-pill-num">Multiple</div>
+                        <div class="stat-pill-label">Awards &amp; Recognition</div>
+                    </div>
+                </div>
+                <div class="stat-pill">
+                    <div class="stat-pill-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div>
+                        <div class="stat-pill-num">Greater Manchester</div>
+                        <div class="stat-pill-label">Based &amp; Beyond</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════ 2025 ═══════════════════════ -->
+    <section class="events-section" id="2025">
+        <div class="container">
+            <div class="year-header fade-up">
+                <div class="year-badge-large">2025</div>
+                <div class="year-divider"></div>
+                <span class="year-count">3 events</span>
+            </div>
+
+            <div class="events-grid">
+
+                <!-- Featured: International Women's Day -->
+                <div class="event-card featured fade-up" data-event="iwd2025">
+                    <div class="event-card-inner">
+                        <div class="event-date-strip">
+                            <i class="far fa-calendar"></i>
+                            <span class="event-date-text">8 March 2025 &nbsp;·&nbsp; 2:30 pm</span>
+                            <span class="event-tag">Flagship</span>
+                        </div>
+                        <div class="event-body">
+                            <h3 class="event-title">International Tameside Women's Day</h3>
+                            <p class="event-excerpt">A landmark event celebrating the resilience and strength of women who have overcome extraordinary challenges. Hosted at Holy Trinity Church &amp; Community Centre, with over 12 councillors in attendance and a full day of pampering, recognition, and community.</p>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Holy Trinity Church &amp; Community Centre, Ashton-Under-Lyne
+                            </div>
+                            <button class="btn-learn-more">Read More →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tameside Speech -->
+                <div class="event-card fade-up" data-event="tameside2025" style="animation-delay:0.1s">
+                    <div class="event-card-inner">
+                        <div class="event-date-strip">
+                            <i class="far fa-calendar"></i>
+                            <span class="event-date-text">23 January 2025</span>
+                            <span class="event-tag">Speaking</span>
+                        </div>
+                        <div class="event-body">
+                            <h3 class="event-title">A Message of Resilience, Hope, Equality &amp; Togetherness</h3>
+                            <p class="event-excerpt">Invited by Cllr Tafheen Sharif to speak at the Tameside community event, addressing four pillars of community strength before an engaged audience.</p>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Tameside
+                            </div>
+                            <button class="btn-learn-more">Read More →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Oldham Initiatives -->
+                <div class="event-card fade-up" data-event="oldham2025" style="animation-delay:0.2s">
+                    <div class="event-card-inner">
+                        <div class="event-date-strip">
+                            <i class="far fa-calendar"></i>
+                            <span class="event-date-text">10 January 2025</span>
+                            <span class="event-tag">Partnership</span>
+                        </div>
+                        <div class="event-body">
+                            <h3 class="event-title">Our 2025 Initiatives in Oldham</h3>
+                            <p class="event-excerpt">Invited by Oldham Council to present upcoming youth-focused activities. Cllr Shaid Mushtaq appointed as Ambassador of Our Youth, cementing a vital statutory partnership.</p>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Oldham Council
+                            </div>
+                            <button class="btn-learn-more">Read More →</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════ SPECIAL MESSAGES ═══════════════════════ -->
+    <section class="messages-section">
+        <div class="container">
+            <div class="messages-header fade-up">
+                <h2>Messages of Support</h2>
+                <p>Words of encouragement from special guests who couldn't be with us in person at International Women's Day 2025</p>
+            </div>
+
+            <div class="messages-grid">
+                <!-- Angela Rayner MP -->
+                <div class="message-card fade-up" style="animation-delay:0.1s">
+                    <div class="message-header">
+                        <div class="message-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="message-sender">
+                            <h3>Angela Rayner MP</h3>
+                            <p>Ashton-under-Lyne, Audenshaw, Droylsden and Dukinfield</p>
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        <p>"I'm sorry I can't be with you in person today at this inspirational event and I hope you all have an amazing time.</p>
+                        <p>For me, International Women's Day is an opportunity to highlight the accomplishments and achievements of women everywhere and also to offer our support and solidarity to those that are struggling for rights across the globe.</p>
+                        <p>I am incredibly lucky to know and to work with some phenomenal women who continue to nourish and to inspire me in so many ways.</p>
+                        <p>My message to women everywhere is – there is only one of you and that is your power. The only person that gets to decide what you can achieve is YOU."</p>
+                        <span class="emphasis">— Sent via Rosina Oliver-Lawlor, Office Manager</span>
+                    </div>
+                </div>
+
+                <!-- Sharman Birtles MBE JP DL -->
+                <div class="message-card fade-up" style="animation-delay:0.2s">
+                    <div class="message-header">
+                        <div class="message-icon">
+                            <i class="fas fa-scroll"></i>
+                        </div>
+                        <div class="message-sender">
+                            <h3>Sharman Birtles, MBE JP DL</h3>
+                            <p>Vice Lord-Lieutenant of Greater Manchester</p>
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        <p>"I'm so sorry not to be with you today as you celebrate International Women's Day in Tameside, but I wanted to send you my very best wishes for a successful, interesting and enjoyable event.</p>
+                        <p>Women across the World have always faced many issues which continue to this day. That's why this year's theme 'Accelerate Action' is so important. We have been patient for so long to see gender equality and we must now increase momentum in addressing the barriers which we face.</p>
+                        <p>This is not an issue we can leave to others.<br>
+                        WE must take decisive steps in supporting one another, particularly those who face a range of challenges.<br>
+                        WE must always support one another and show resilience and courage.<br>
+                        WE are strong.<br>
+                        WE are wonderful.<br>
+                        WE can do this!"</p>
+                    </div>
+                </div>
+
+                <!-- Councillor Betty Affleck -->
+                <div class="message-card fade-up" style="animation-delay:0.3s; grid-column: span 1;">
+                    <div class="message-header">
+                        <div class="message-icon">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <div class="message-sender">
+                            <h3>Cllr Betty Affleck</h3>
+                            <p>Civic Mayor of Tameside</p>
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        <p>"I'm so sorry I'm unable to be with you today for the International Women's Day event at Holy Trinity Church and Community Centre. It's a place where so much good work is done in the west end of Ashton and beyond.</p>
+                        <p>I'm sure it's going to be a great day as you have such an exciting programme to look forward to. There's lots of food, fun and fashion, and some ladies are going to get some very well-deserved pampering. I wish I could enjoy some of it myself.</p>
+                        <p>However, even though I can't be with you, I want you to be certain that you have my full support.</p>
+                        <p>I have always been very proud of the role women play in society and of their many achievements. I never cease to admire their strength and resilience. I gained my inspiration for that from my mother, Rose, who not only raised a large family but was able to support my father, Joe, as a Tameside councillor, and to serve as deputy mayoress and mayoress of this borough.</p>
+                        <p>So please be assured of my very best wishes. I wish Light in the Darkness every success with the very valuable work they do."</p>
+                    </div>
+                </div>
+
+                <!-- Angela Robbins -->
+                <div class="message-card fade-up" style="animation-delay:0.4s; grid-column: span 1;">
+                    <div class="message-header">
+                        <div class="message-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="message-sender">
+                            <h3>Angela Robbins</h3>
+                            <p>Director, Well Polished Cleaning Agency</p>
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        <p>"I wish you many blessings and love at your International Women's Day event today.</p>
+                        <p>I am very proud to sponsor this event through my company Well Polished Cleaning Agency.</p>
+                        <p>As Past President of Tameside Rotary, I know, that by giving a little of yourself, you get SO much love and happiness back. Working as a team and learning and growing in confidence with the help of your colleagues. I know this will be happening amongst the volunteers at LITD.</p>
+                        <p>I did explain to Beatrice when I met her that operating where she was living in Manchester meant that she would be better placed to approach a Manchester Rotary Club for funding. Beatrice looked at me with great determination and sincerity and said, that as she felt so much support in our Tameside community, she WOULD have an event in Tameside and I absolutely knew she would achieve it one way or another!</p>
+                        <p>Beatrice, you inspire me. I see the determination, I hear what you've been through and the love and hope generated from you will spread to everyone attending your event today.</p>
+                        <p>Well done to Beatrice and all who volunteer at Light in the Darkness."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════ 2024 ═══════════════════════ -->
+    <section class="events-section" id="2024">
+        <div class="container">
+            <div class="year-header fade-up">
+                <div class="year-badge-large">2024</div>
+                <div class="year-divider"></div>
+                <span class="year-count">3 events</span>
+            </div>
+
+            <div class="events-grid">
+
+                <!-- Children's Conference — featured -->
+                <div class="event-card featured fade-up" data-event="children2024">
+                    <div class="event-card-inner">
+                        <div class="event-date-strip">
+                            <i class="far fa-calendar"></i>
+                            <span class="event-date-text">5 October 2024 &nbsp;·&nbsp; 10:00 am</span>
+                            <span class="event-tag">Flagship</span>
+                        </div>
+                        <div class="event-body">
+                            <h3 class="event-title">Every Child's Voice Matters — Conference on Children's Well-Being</h3>
+                            <p class="event-excerpt">Around 120 attendees gathered for this landmark conference, including Deputy Mayor Kate Green, Cllr Tafheen Sharif, and a GMCA representative. Five tables of statutory services staff, 35 beneficiaries, and community organisations shared insights and strengthened partnerships.</p>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Greater Manchester
+                            </div>
+                            <button class="btn-learn-more">Read More →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cllr Sharif Meeting -->
+                <div class="event-card fade-up" data-event="sharif2024" style="animation-delay:0.1s">
+                    <div class="event-card-inner">
+                        <div class="event-date-strip">
+                            <i class="far fa-calendar"></i>
+                            <span class="event-date-text">19 November 2024</span>
+                            <span class="event-tag">Advocacy</span>
+                        </div>
+                        <div class="event-body">
+                            <h3 class="event-title">Meeting with Cllr Tafheen Sharif — Advancing Holistic Empowerment</h3>
+                            <p class="event-excerpt">A productive meeting at Dukinfield Town Hall with Tameside's First Deputy for Health &amp; Equalities to advance the Holistic Empowerment Women Programme, covering mental well-being, economic independence, and cultural identity.</p>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Dukinfield Town Hall
+                            </div>
+                            <button class="btn-learn-more">Read More →</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GMCA Guest Speaker -->
+                <div class="event-card fade-up" data-event="gmca2024" style="animation-delay:0.2s">
+                    <div class="event-card-inner">
+                        <div class="event-date-strip">
+                            <i class="far fa-calendar"></i>
+                            <span class="event-date-text">8 January 2024 &nbsp;·&nbsp; 10:00 am</span>
+                            <span class="event-tag">Speaking</span>
+                        </div>
+                        <div class="event-body">
+                            <h3 class="event-title">Guest Speaker at the GMCA</h3>
+                            <p class="event-excerpt">Invited to speak at the Greater Manchester Combined Authority offices, bringing LITD's community perspective to regional decision-makers and statutory partners.</p>
+                            <div class="event-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Tootal Buildings, 56 Oxford Street, Manchester
+                            </div>
+                            <button class="btn-learn-more">Read More →</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="events-cta">
+        <div class="container">
+            <h2>Be Part of What Comes Next</h2>
+            <p>Our events grow stronger every year because of the communities around us. Whether you want to partner, attend, or support our work — we want to hear from you.</p>
+            <a href="contact.html" class="btn-gold">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <h3>LITD C.I.C</h3>
+                        <p>Light In The Darkness is a Community Interest Company dedicated to bringing hope, practical support, and advocacy to society's most vulnerable individuals.</p>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+                            </a>
+                            <a href="#" class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                            </a>
+                            <a href="https://www.instagram.com/litd_cic" class="social-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="teams.html">Our Team</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="events.html">Events</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li class="footer-contact-item">
+                                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                <span class="footer-contact-text">20 Swan Street, Manchester, M4 5JW</span>
+                            </li>
+                            <li class="footer-contact-item">
+                                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                                <span class="footer-contact-text">contact@litdcic.com</span>
+                            </li>
+                            <li class="footer-contact-item">
+                                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                                <span class="footer-contact-text">+44 (0)745 0201 713</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; <span id="currentYear"></span> LITD C.I.C. Registered in England and Wales #12690001. All rights reserved.</p>
+                    <p>Community Interest Company</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="eventModal">
+        <div class="modal-container">
+            <button class="modal-close" id="closeModal">&times;</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // ── Mobile menu ──
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu    = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.className = mobileMenu.classList.contains('hidden') ? 'fas fa-bars' : 'fas fa-times';
+        });
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+        }));
+
+        // ── Footer year ──
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // ── Scroll shadow ──
+        window.addEventListener('scroll', () => {
+            document.getElementById('header').style.boxShadow =
+                window.scrollY > 10 ? 'var(--shadow-soft)' : 'none';
+        });
+
+        // ── Fade-up on scroll ──
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach((e, i) => {
+                if (e.isIntersecting) {
+                    const delay = parseFloat(e.target.style.animationDelay || 0) * 1000;
+                    setTimeout(() => e.target.classList.add('visible'), delay);
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // ── Event data ──
+        const events = {
+            iwd2025: {
+            tag: 'Flagship Event',
+            title: 'International Women\'s Day Tameside 2025',
+            date: '8 March 2025',
+            time: '2:30 pm',
+            location: 'Holy Trinity Church &amp; Community Centre, Dean Street, Ashton-Under-Lyne, OL6 7HD',
+            body: `
+                <p>On 8 March 2025, Light in the Darkness transformed the Holy Trinity Church &amp; Community Centre in Ashton-Under-Lyne into a space of hope and celebration for International Women's Day. The event was dedicated to honouring the strength and resilience of women who have overcome profound challenges.</p>
+                <h3>A Day of Pampering and Recognition</h3>
+                <p>Selected nominees received a truly special experience — professional hairstyling, makeup, clothing, and a personal photo shoot. These women, nominated for their extraordinary resilience, had faced hardships including domestic abuse, widowhood, caregiving, seeking asylum, and battling for child custody.</p>
+                <p>Volunteers and local professionals generously gave their time and expertise to create a day of warmth, dignity, and celebration — ensuring each woman felt valued, beautiful, and seen.</p>
+                <h3>Community Support and Impact</h3>
+                <p>We were pleased to welcome over 12 councillors from across Tameside, Oldham, Ashton-Under-Lyne, and Moston, who joined in celebrating these remarkable women. Throughout the evening, attendees shared powerful stories of survival and hope — a testament to the strength of the human spirit and the importance of community.</p>
+                <p>International Women's Day Tameside 2025 was not just about pampering — it was a heartfelt tribute to women whose courage too often goes unnoticed, and a reminder of what we can achieve when we come together to uplift one another.</p>
+    `
+},
+            tameside2025: {
+                tag: 'Speaking Engagement',
+                title: 'A Message of Resilience, Hope, Equality &amp; Togetherness',
+                date: '23 January 2025',
+                time: '10:00 am',
+                location: 'Tameside',
+                body: `
+                    <p>On 23 January 2025, LITD had the honour of speaking at the Tameside community event, an occasion that brought together individuals committed to building a stronger, more united community. The invitation came from Cllr Tafheen Sharif, whose dedication to inclusivity and positive change continues to inspire many.</p>
+                    <h3>Four Pillars of Community Strength</h3>
+                    <p>The speech focused on four key themes that underpin LITD's work and the communities it serves:</p>
+                    <ul>
+                        <li><strong>Resilience</strong> — the importance of growing through adversity rather than simply bouncing back</li>
+                        <li><strong>Hope</strong> — the belief that our efforts towards positive change are never in vain</li>
+                        <li><strong>Equality</strong> — ensuring every individual has access to opportunities, resources, and support</li>
+                        <li><strong>Togetherness</strong> — recognising that we are stronger as a collective than as individuals</li>
+                    </ul>
+                    <p>The event reinforced the idea that when we uplift one another, we create a future rooted in compassion, fairness, and shared strength.</p>
+                `
+            },
+            oldham2025: {
+                tag: 'Partnership',
+                title: 'Our 2025 Initiatives in Oldham',
+                date: '10 January 2025',
+                time: '12:00 pm',
+                location: 'Oldham Council',
+                body: `
+                    <p>In January 2025, LITD was honoured to be invited by Oldham Council to discuss upcoming activities focused on children and youth. This meeting provided an invaluable opportunity to align initiatives with the needs of the community, ensuring that young people receive the support and opportunities they deserve.</p>
+                    <h3>A New Ambassador for Youth</h3>
+                    <p>A key highlight of the collaboration is the role of Cllr Shaid Mushtaq, appointed as the Ambassador of Our Youth. His dedication and leadership will be instrumental in driving positive change, fostering engagement, and creating a nurturing environment for young individuals to thrive.</p>
+                    <h3>Focus Areas for 2025</h3>
+                    <ul>
+                        <li>Education support — tutoring, mentorship, and academic resources</li>
+                        <li>Digital skills, leadership, and entrepreneurship workshops</li>
+                        <li>Safe spaces for mental health and wellbeing</li>
+                        <li>Community engagement and civic participation</li>
+                        <li>Expansion of the Breaking the Cycle sports programmes</li>
+                    </ul>
+                    <p>As 2025 progresses, LITD's commitment to empowering children through education, mentorship, and community programmes remains unwavering.</p>
+                `
+            },
+            children2024: {
+                tag: 'Flagship Conference',
+                title: 'Every Child\'s Voice Matters — Conference on Children\'s Well-Being',
+                date: '5 October 2024',
+                time: '10:00 am',
+                location: 'Greater Manchester',
+                body: `
+                    <p>In October 2024, LITD proudly hosted the "Every Child's Voice Matters" conference, bringing together around 120 attendees dedicated to championing the rights and well-being of children. The event served as a platform to showcase innovative impact and discuss key issues affecting young lives across our communities.</p>
+                    <h3>Special Guests</h3>
+                    <ul>
+                        <li>Deputy Mayor Kate Green, representing Mayor Andy Burnham</li>
+                        <li>Cllr Tafheen Sharif, standing as our dedicated Ambassador</li>
+                        <li>Cllr Shaid from Oldham</li>
+                        <li>A representative from the Greater Manchester Combined Authority (GMCA)</li>
+                        <li>Alex from UnLtD Social Enterprise, our main ambassador</li>
+                    </ul>
+                    <h3>A Call to Action</h3>
+                    <p>The event welcomed five tables of statutory services staff, 35 of our beneficiaries, and a diverse range of community services — all coming together to share insights and strengthen collaborations. LITD's warm hospitality extended to providing handmade food and drinks, ensuring a welcoming, community-centred atmosphere.</p>
+                    <p>This gathering was a call to action for collective efforts in supporting every child's voice and future. We are grateful to everyone who attended and contributed to this impactful event.</p>
+                `
+            },
+            sharif2024: {
+                tag: 'Advocacy Meeting',
+                title: 'Meeting with Cllr Tafheen Sharif — Advancing Holistic Empowerment for Women',
+                date: '19 November 2024',
+                time: '10:00 am',
+                location: 'Dukinfield Town Hall',
+                body: `
+                    <p>We had the privilege of meeting with Cllr Tafheen Sharif, Tameside First Deputy for Health &amp; Equalities, at Dukinfield Town Hall to discuss the Holistic Empowerment Women Programme.</p>
+                    <h3>Key Discussion Points</h3>
+                    <p>The discussion centred on the programme's goals of supporting, educating, and empowering women through a holistic approach addressing:</p>
+                    <ul>
+                        <li>Mental well-being and emotional resilience</li>
+                        <li>Economic independence and employability</li>
+                        <li>Cultural identity and community belonging</li>
+                    </ul>
+                    <p>Cllr Sharif expressed great interest in the initiative, emphasising the importance of inclusive support systems that cater to the diverse needs of women in the community.</p>
+                    <h3>Outcomes</h3>
+                    <p>Key outcomes included discussions on potential collaborations, community outreach strategies, and ways to enhance accessibility to holistic wellness services. This meeting set a strong foundation for further partnership and action.</p>
+                `
+            },
+            gmca2024: {
+                tag: 'Speaking Engagement',
+                title: 'Guest Speaker at the GMCA',
+                date: '8 January 2024',
+                time: '10:00 am',
+                location: 'Tootal Buildings, 56 Oxford Street, Manchester M1 6EU',
+                body: `
+                    <p>In January 2024, LITD was invited to speak at the Greater Manchester Combined Authority offices, bringing a community-led perspective to regional decision-makers and statutory partners.</p>
+                    <p>The GMCA convenes the leaders of Greater Manchester's ten councils alongside the Mayor and Deputy Mayor, making this an important opportunity to advocate for LITD's beneficiaries at a regional policy level and to strengthen relationships with the statutory sector.</p>
+                    <p>This engagement underscores the growing recognition of LITD's work across Greater Manchester and the role community organisations play in complementing statutory services.</p>
+                `
+            }
+        };
+
+        // ── Modal logic ──
+        const modal        = document.getElementById('eventModal');
+        const modalContent = document.getElementById('modalContent');
+        const closeModal   = document.getElementById('closeModal');
+
+        function openModal(id) {
+            const e = events[id];
+            if (!e) return;
+            modalContent.innerHTML = `
+                <div class="modal-header">
+                    <div class="modal-tag">${e.tag}</div>
+                    <h2>${e.title}</h2>
+                    <div class="modal-meta">
+                        <span><i class="far fa-calendar"></i> ${e.date}</span>
+                        <span><i class="far fa-clock"></i> ${e.time}</span>
+                        <span><i class="fas fa-map-marker-alt"></i> ${e.location}</span>
+                    </div>
+                </div>
+                <div class="modal-body">${e.body}</div>
+            `;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModalFn() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        document.querySelectorAll('.btn-learn-more').forEach(btn => {
+            btn.addEventListener('click', e => {
+                e.stopPropagation();
+                openModal(btn.closest('.event-card').dataset.event);
+            });
+        });
+
+        document.querySelectorAll('.event-card').forEach(card => {
+            card.addEventListener('click', () => openModal(card.dataset.event));
+        });
+
+        closeModal.addEventListener('click', closeModalFn);
+        modal.addEventListener('click', e => { if (e.target === modal) closeModalFn(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalFn(); });
+    </script>
+</body>
+</html>

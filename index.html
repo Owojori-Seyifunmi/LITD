@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Color Variables */
+            /* Colour Variables */
             --cream: #F6F1E7;
             --cream-dark: #D4C9B5;
             --forest: #1F3D2B;
@@ -37,17 +37,17 @@
             --shadow-soft: 0 4px 20px -4px rgba(7, 31, 35, 0.08);
             --shadow-lifted: 0 10px 40px -10px rgba(7, 31, 35, 0.15);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         html {
             scroll-behavior: smooth;
         }
-        
+
         body {
             font-family: 'Inter', sans-serif;
             color: var(--charcoal);
@@ -55,25 +55,25 @@
             line-height: 1.6;
             overflow-x: hidden;
         }
-        
+
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Libre Baskerville', serif;
             font-weight: 700;
             line-height: 1.2;
         }
-        
+
         a {
             text-decoration: none;
             color: inherit;
         }
-        
+
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 var(--spacing-md);
         }
-        
+
         /* Header Styles */
         header {
             position: fixed;
@@ -85,44 +85,48 @@
             transition: all 0.3s ease;
             box-shadow: var(--shadow-soft);
         }
-        
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: var(--spacing-md) 0;
+            padding: var(--spacing-sm) 0;
         }
-        
+
         .logo {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--charcoal);
-            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
         }
-        
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
         .nav-desktop {
             display: none;
         }
-        
+
         .nav-desktop a {
             margin-left: var(--spacing-xl);
             font-size: 0.875rem;
             color: var(--charcoal);
             transition: opacity 0.3s ease;
         }
-        
+
         .nav-desktop a:hover {
             opacity: 0.7;
         }
-        
+
         .mobile-menu-btn {
             background: none;
             border: none;
             color: var(--charcoal);
             font-size: 1.5rem;
             cursor: pointer;
+            padding: 0.5rem;
         }
-        
+
         .nav-mobile {
             position: absolute;
             top: 100%;
@@ -136,23 +140,29 @@
             gap: var(--spacing-md);
             box-shadow: var(--shadow-soft);
         }
-        
+
         .nav-mobile.hidden {
             display: none;
         }
-        
+
+        .nav-mobile a {
+            font-size: 1rem;
+            color: var(--charcoal);
+            padding: 0.5rem 0;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            margin-top: 80px;
+            margin-top: 70px;
         }
-        
+
         .hero-grid {
             display: flex;
             flex-direction: column;
-            min-height: calc(100vh - 80px);
+            min-height: calc(100vh - 70px);
         }
-        
+
         .hero-left {
             width: 100%;
             background-image: radial-gradient(var(--cream-dark) 1.5px, transparent 1.5px);
@@ -164,70 +174,74 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            min-height: 60vh;
         }
-        
+
         .decorative-circle {
             position: absolute;
-            width: 192px;
-            height: 192px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             background: rgba(7, 31, 35, 0.03);
-            top: 10%;
-            right: -48px;
+            top: 5%;
+            right: -30px;
         }
-        
+
         .hero-content {
             position: relative;
             z-index: 10;
             max-width: 500px;
         }
-        
+
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--forest);
             line-height: 1.1;
             margin-bottom: var(--spacing-lg);
         }
-        
+
         .hero p {
-            font-size: 1rem;
+            font-size: 0.9375rem;
             color: var(--forest-light);
             line-height: 1.6;
             margin-bottom: var(--spacing-lg);
             max-width: 400px;
         }
-        
+
         .hero-buttons {
             display: flex;
             align-items: center;
-            gap: var(--spacing-lg);
-            margin-bottom: var(--spacing-2xl);
+            flex-wrap: wrap;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
         }
-        
+
         .btn-hero {
             background-color: var(--gold);
             color: var(--charcoal);
             border: none;
-            padding: 0.875rem 2rem;
+            padding: 0.875rem 1.5rem;
             border-radius: var(--radius-md);
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.9375rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: inline-block;
         }
-        
+
         .btn-hero:hover {
             background-color: #d4952e;
             transform: translateY(-2px);
         }
-        
+
         .play-button-container {
             position: relative;
             width: 48px;
             height: 48px;
             cursor: pointer;
+            flex-shrink: 0;
         }
-        
+
         .play-button {
             width: 48px;
             height: 48px;
@@ -238,11 +252,11 @@
             justify-content: center;
             transition: transform 0.3s ease;
         }
-        
+
         .play-button-container:hover .play-button {
             transform: scale(1.05);
         }
-        
+
         .play-icon {
             width: 16px;
             height: 16px;
@@ -250,7 +264,7 @@
             fill: var(--sage);
             margin-left: 2px;
         }
-        
+
         .rotating-text {
             position: absolute;
             top: 0;
@@ -259,175 +273,176 @@
             height: 100%;
             animation: rotate-slow 10s linear infinite;
         }
-        
+
         @keyframes rotate-slow {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        
+
         .social-links {
             position: absolute;
-            bottom: var(--spacing-xl);
+            bottom: var(--spacing-lg);
             left: var(--spacing-md);
             display: flex;
-            gap: var(--spacing-xl);
+            gap: var(--spacing-lg);
         }
-        
+
         .social-links a {
             font-size: 0.75rem;
             color: var(--sage);
             transition: color 0.3s ease;
         }
-        
+
         .social-links a:hover {
             color: var(--charcoal);
         }
-        
+
         .hero-right {
             width: 100%;
-            background-color: var(--forest);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: var(--spacing-md);
-            min-height: 50vh;
+            padding: 0;
+            min-height: 40vh;
         }
-        
+
+       
         .hero-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: var(--radius-md);
-            max-height: 70vh;
+            display: block;
+            min-height: 40vh;
         }
-        
+
         /* Mission Banner */
         .mission-banner {
             background-color: var(--charcoal);
-            padding: var(--spacing-sm) var(--spacing-md);
+            padding: var(--spacing-md);
         }
-        
+
         .mission-banner p {
             text-align: center;
             color: rgba(255, 255, 255, 0.9);
             font-size: 0.875rem;
+            line-height: 1.6;
             max-width: 900px;
             margin: 0 auto;
         }
-        
+
         /* Stats Bar */
         .stats-bar {
             background-color: var(--charcoal);
             padding: var(--spacing-lg) var(--spacing-md);
         }
-        
+
         .stats-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            align-items: center;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: var(--spacing-lg);
         }
-        
+
         .stat-item {
             text-align: center;
             color: var(--white);
-            width: 45%;
         }
-        
+
         .stat-icon {
             width: 28px;
             height: 28px;
             margin: 0 auto var(--spacing-sm);
             stroke-width: 1.5;
         }
-        
+
         .stat-number {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 0.25rem;
         }
-        
+
         .stat-label {
             font-size: 0.75rem;
             opacity: 0.85;
         }
-        
+
         /* Section Common Styles */
         .section {
             padding: var(--spacing-2xl) var(--spacing-md);
         }
-        
+
         .section-header {
             text-align: center;
             max-width: 800px;
             margin: 0 auto var(--spacing-2xl);
         }
-        
+
         .section-subtitle {
-            font-size: 0.75rem;
-            text-transform: uppercase;
+            font-size: 1.3rem;
+            font-family: 'Libre Baskerville', serif;
             letter-spacing: 0.1em;
             color: var(--gold);
             font-weight: 500;
             margin-bottom: var(--spacing-sm);
         }
-        
+
         .section-title {
-            font-size: 2rem;
+            font-size: 1.75rem;
             color: var(--forest);
             margin-bottom: var(--spacing-md);
+            line-height: 1.2;
         }
-        
+
         .section-description {
             color: var(--forest-light);
             line-height: 1.6;
+            font-size: 0.9375rem;
         }
-        
+
         /* About Section */
         .about-grid {
             display: grid;
             gap: var(--spacing-2xl);
         }
-        
+
         .about-content h2 {
-            font-size: 2rem;
+            font-size: 1.75rem;
             color: var(--forest);
             margin-bottom: var(--spacing-md);
         }
-        
+
         .about-text {
             color: var(--forest-light);
             line-height: 1.6;
             margin-bottom: var(--spacing-md);
+            font-size: 0.9375rem;
         }
-        
+
         .approach-card {
-            background-color: var(--cream);
+            background-color: var(--off-white);
             border-radius: var(--radius-lg);
-            padding: var(--spacing-lg);
+            padding: var(--spacing-md);
             margin-top: var(--spacing-md);
         }
-        
+
         .approach-card h3 {
             font-size: 1.125rem;
             color: var(--charcoal);
             margin-bottom: var(--spacing-sm);
         }
-        
+
         .approach-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--spacing-sm);
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
             margin-top: var(--spacing-md);
         }
-        
+
         .approach-item {
             display: flex;
             align-items: flex-start;
             gap: var(--spacing-sm);
         }
-        
+
         .approach-icon {
             width: 40px;
             height: 40px;
@@ -438,29 +453,31 @@
             justify-content: center;
             flex-shrink: 0;
         }
-        
+
         .approach-icon svg {
             width: 20px;
             height: 20px;
             color: var(--gold);
         }
-        
+
         .approach-details h4 {
             font-size: 0.875rem;
             font-weight: 500;
             color: var(--charcoal);
             margin-bottom: 0.25rem;
         }
-        
+
         .approach-details p {
             font-size: 0.75rem;
             color: var(--forest-light);
+            line-height: 1.4;
         }
-        
+
         .about-image-container {
             position: relative;
+            margin-top: var(--spacing-lg);
         }
-        
+
         .about-image {
             width: 100%;
             border-radius: var(--radius-xl);
@@ -468,70 +485,74 @@
             object-fit: cover;
             aspect-ratio: 4/5;
         }
-        
+
         .year-badge {
             position: absolute;
-            bottom: -24px;
-            left: -24px;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
             background-color: var(--forest);
             color: var(--white);
             padding: var(--spacing-md);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow-lifted);
             z-index: 20;
+            text-align: center;
         }
-        
+
         .year-badge .number {
             font-size: 1.5rem;
             font-weight: 700;
         }
-        
+
         .year-badge .label {
             font-size: 0.75rem;
             opacity: 0.9;
         }
-        
+
         /* Why Section */
         .why-section {
             background-color: var(--charcoal);
             color: var(--white);
         }
-        
+
         .why-grid {
             display: grid;
             gap: var(--spacing-2xl);
         }
-        
+
         .why-content h2 {
-            font-size: 2rem;
+            font-size: 1.75rem;
             color: var(--white);
             margin-bottom: var(--spacing-md);
         }
-        
+
         .why-text {
             color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
             margin-bottom: var(--spacing-md);
+            font-size: 0.9375rem;
         }
-        
+
         .highlight-box {
             background-color: rgba(31, 61, 43, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--radius-lg);
-            padding: var(--spacing-lg);
+            padding: var(--spacing-md);
             margin-top: var(--spacing-lg);
         }
-        
+
         .highlight-box p {
             color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9375rem;
         }
-        
+
         .challenges-list {
             display: flex;
             flex-direction: column;
             gap: var(--spacing-sm);
         }
-        
+
         .challenge-item {
             display: flex;
             align-items: flex-start;
@@ -540,7 +561,7 @@
             border-radius: var(--radius-md);
             padding: var(--spacing-md);
         }
-        
+
         .challenge-icon {
             width: 40px;
             height: 40px;
@@ -551,31 +572,682 @@
             justify-content: center;
             flex-shrink: 0;
         }
-        
+
         .challenge-icon svg {
             width: 20px;
             height: 20px;
             color: var(--gold);
         }
-        
+
         .challenge-text {
             font-size: 0.875rem;
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.5;
             padding-top: 0.5rem;
         }
-        
+
+        /* Response Section */
+        .response-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .response-card {
+            background-color: var(--white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .response-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lifted);
+        }
+
+        .response-image-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+        .response-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .response-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .response-content {
+            padding: var(--spacing-lg);
+        }
+
+        .response-content h3 {
+            font-size: 1.125rem;
+            color: var(--charcoal);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .response-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .response-list li {
+            padding-left: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+            position: relative;
+            color: var(--forest-light);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .response-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        /* Resources Section */
+        .resources-section {
+            background-color: var(--cream);
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .resource-card {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lifted);
+            border-color: rgba(31, 61, 43, 0.2);
+        }
+
+        .resource-category {
+            font-size: 0.75rem;
+            color: var(--gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--spacing-sm);
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: rgba(227, 165, 62, 0.1);
+            border-radius: var(--radius-sm);
+        }
+
+        .resource-title {
+            font-size: 1.125rem;
+            color: var(--charcoal);
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.3;
+            flex-grow: 1;
+        }
+
+        .resource-excerpt {
+            font-size: 0.875rem;
+            color: var(--forest-light);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .btn-read-more {
+            background: none;
+            border: none;
+            color: var(--forest);
+            font-weight: 500;
+            font-size: 0.875rem;
+            cursor: pointer;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            margin-top: auto;
+        }
+
+        .btn-read-more:hover {
+            color: var(--gold);
+            gap: 0.5rem;
+        }
+
+        .resource-image {
+            width: 100%;
+            height: 200px;
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+            overflow: hidden;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .resource-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .resource-card:hover .resource-image img {
+            transform: scale(1.05);
+        }
+
+        .resource-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(7, 31, 35, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: var(--spacing-md);
+            overflow-y: auto;
+        }
+
+        .modal-container {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--charcoal);
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background-color: rgba(7, 31, 35, 0.1);
+        }
+
+        .modal-content {
+            padding: var(--spacing-2xl) var(--spacing-xl);
+        }
+
+        /* Resource Gallery */
+        .resource-gallery {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--cream-dark);
+        }
+
+        .resource-gallery h3 {
+            font-size: 1.125rem;
+            color: var(--charcoal);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: var(--spacing-sm);
+        }
+
+        .gallery-item {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-carousel {
+            position: relative;
+        }
+
+        .carousel-container {
+            overflow: hidden;
+            border-radius: var(--radius-md);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            padding: 0;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--white);
+        }
+
+        .carousel-btn.prev {
+            left: 1rem;
+        }
+
+        .carousel-btn.next {
+            right: 1rem;
+        }
+
+        .carousel-btn i {
+            color: var(--charcoal);
+            font-size: 1.25rem;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: var(--spacing-md);
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--sage);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background-color: var(--gold);
+            transform: scale(1.2);
+        }
+
+        .resource-modal {
+            max-width: 900px;
+        }
+
+        .resource-header {
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .resource-header h2 {
+            font-size: 1.75rem;
+            color: var(--forest);
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.3;
+        }
+
+        .resource-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .resource-date, .resource-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--forest-light);
+        }
+
+        .resource-date i, .resource-location i {
+            color: var(--gold);
+        }
+
+        .resource-category-large {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: rgba(227, 165, 62, 0.1);
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .resource-content {
+            color: var(--charcoal);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .resource-content p {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .resource-content h3, .resource-content h4 {
+            color: var(--forest);
+            margin: var(--spacing-lg) 0 var(--spacing-md);
+        }
+
+        .resource-content ul, .resource-content ol {
+            margin-left: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .resource-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Activities Section */
+        .activities-section {
+            background-color: var(--off-white);
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+
+        .activity-card {
+            background-color: var(--white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-soft);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lifted);
+            border-color: rgba(31, 61, 43, 0.2);
+        }
+
+        .activity-category {
+            font-size: 0.75rem;
+            color: var(--forest);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--spacing-xs);
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: rgba(31, 61, 43, 0.1);
+            border-radius: var(--radius-sm);
+        }
+
+        .activity-date {
+            font-size: 0.875rem;
+            color: var(--sage);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 500;
+        }
+
+        .activity-title {
+            font-size: 1.125rem;
+            color: var(--charcoal);
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.3;
+            flex-grow: 1;
+        }
+
+        .activity-excerpt {
+            font-size: 0.875rem;
+            color: var(--forest-light);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.5;
+        }
+
+        .btn-learn-more {
+            background: none;
+            border: none;
+            color: var(--forest);
+            font-weight: 500;
+            font-size: 0.875rem;
+            cursor: pointer;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            margin-top: auto;
+        }
+
+        .btn-learn-more:hover {
+            color: var(--gold);
+            gap: 0.5rem;
+        }
+
+        .activity-image {
+            width: 100%;
+            height: 200px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .activity-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .activity-card:hover .activity-image img {
+            transform: scale(1.05);
+        }
+
+        .activity-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .activity-modal {
+            max-width: 900px;
+        }
+
+        .activity-header {
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .activity-header h2 {
+            font-size: 1.75rem;
+            color: var(--forest);
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.3;
+        }
+
+        .activity-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .activity-date-large, .activity-time, .activity-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--forest-light);
+        }
+
+        .activity-date-large i, .activity-time i, .activity-location i {
+            color: var(--gold);
+        }
+
+        .activity-category-large {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: rgba(31, 61, 43, 0.1);
+            color: var(--forest);
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .activity-content-text {
+            color: var(--charcoal);
+            line-height: 1.7;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .activity-content-text p {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .activity-content-text h3, .activity-content-text h4 {
+            color: var(--forest);
+            margin: var(--spacing-lg) 0 var(--spacing-md);
+        }
+
+        .activity-content-text ul, .activity-content-text ol {
+            margin-left: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .activity-content-text li {
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-view-events {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--forest);
+            color: var(--white);
+            border: none;
+            padding: 0.875rem 2rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-view-events:hover {
+            background-color: var(--charcoal);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lifted);
+        }
+
+        .btn-view-events i {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-view-events:hover i {
+            transform: translateX(4px);
+        }
+
         /* Services Section */
         .services-section {
             background-color: var(--off-white);
         }
-        
+
         .services-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: var(--spacing-md);
         }
-        
+
         .service-card {
             background-color: var(--white);
             border-radius: var(--radius-lg);
@@ -583,27 +1255,27 @@
             overflow: hidden;
             transition: all 0.3s ease;
         }
-        
+
         .service-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-lifted);
         }
-        
+
         .service-header {
             height: 96px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        
+
         .service-header.gold {
             background-color: rgba(227, 165, 62, 0.1);
         }
-        
+
         .service-header.green {
             background-color: rgba(31, 61, 43, 0.1);
         }
-        
+
         .service-icon {
             width: 64px;
             height: 64px;
@@ -612,42 +1284,42 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .service-icon.gold {
             background-color: var(--gold);
         }
-        
+
         .service-icon.green {
             background-color: var(--forest);
         }
-        
+
         .service-icon svg {
             width: 32px;
             height: 32px;
             color: var(--white);
         }
-        
+
         .service-body {
             padding: var(--spacing-lg);
         }
-        
+
         .service-body h3 {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             color: var(--charcoal);
             margin-bottom: var(--spacing-sm);
         }
-        
+
         .service-description {
             font-size: 0.875rem;
             color: var(--forest-light);
             line-height: 1.6;
             margin-bottom: var(--spacing-md);
         }
-        
+
         .features-list {
             list-style: none;
         }
-        
+
         .features-list li {
             display: flex;
             align-items: center;
@@ -656,14 +1328,14 @@
             color: var(--forest-light);
             margin-bottom: 0.5rem;
         }
-        
+
         .features-list svg {
             width: 16px;
             height: 16px;
             color: var(--gold);
             flex-shrink: 0;
         }
-        
+
         .cta-card {
             background-color: var(--forest);
             border-radius: var(--radius-lg);
@@ -674,21 +1346,22 @@
             justify-content: center;
             text-align: center;
             color: var(--white);
+            min-height: 300px;
         }
-        
+
         .cta-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             color: var(--white);
             margin-bottom: var(--spacing-sm);
         }
-        
+
         .cta-card p {
             font-size: 0.875rem;
             opacity: 0.9;
             margin-bottom: var(--spacing-md);
             max-width: 200px;
         }
-        
+
         .btn-gold {
             background-color: var(--gold);
             color: var(--charcoal);
@@ -699,48 +1372,50 @@
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            display: inline-block;
         }
-        
+
         .btn-gold:hover {
             background-color: #d4952e;
+            transform: translateY(-2px);
         }
-        
+
         /* Impact Section */
         .impact-grid {
             display: grid;
             gap: var(--spacing-2xl);
         }
-        
+
         .impact-model {
-            background-color: var(--cream);
+            background-color: var(--off-white);
             border-radius: var(--radius-xl);
             padding: var(--spacing-lg);
         }
-        
+
         .impact-model-header {
             display: flex;
             align-items: center;
             gap: var(--spacing-sm);
             margin-bottom: var(--spacing-lg);
         }
-        
+
         .impact-model-header svg {
             width: 32px;
             height: 32px;
             color: var(--gold);
         }
-        
+
         .impact-model-header h3 {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             color: var(--charcoal);
         }
-        
+
         .impact-items-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr;
             gap: var(--spacing-sm);
         }
-        
+
         .impact-item {
             background-color: var(--white);
             border-radius: var(--radius-lg);
@@ -748,12 +1423,12 @@
             box-shadow: var(--shadow-soft);
             transition: all 0.3s ease;
         }
-        
+
         .impact-item:hover {
             transform: translateY(-4px);
             box-shadow: var(--shadow-lifted);
         }
-        
+
         .impact-icon {
             width: 48px;
             height: 48px;
@@ -764,44 +1439,44 @@
             justify-content: center;
             margin-bottom: var(--spacing-sm);
         }
-        
+
         .impact-icon svg {
             width: 24px;
             height: 24px;
             color: var(--forest);
         }
-        
+
         .impact-item h4 {
             font-size: 0.875rem;
             font-weight: 500;
             color: var(--charcoal);
             margin-bottom: 0.25rem;
         }
-        
+
         .impact-item p {
             font-size: 0.75rem;
             color: var(--forest-light);
         }
-        
+
         /* Get Involved Section */
         .get-involved-grid {
             display: grid;
             gap: var(--spacing-2xl);
         }
-        
+
         .ways-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--spacing-sm);
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
             margin-bottom: var(--spacing-md);
         }
-        
+
         .way-item {
             display: flex;
             align-items: flex-start;
             gap: var(--spacing-sm);
         }
-        
+
         .way-icon {
             width: 40px;
             height: 40px;
@@ -812,57 +1487,58 @@
             justify-content: center;
             flex-shrink: 0;
         }
-        
+
         .way-icon svg {
             width: 20px;
             height: 20px;
             color: var(--gold);
         }
-        
+
         .way-details h4 {
             font-size: 0.875rem;
             font-weight: 500;
             color: var(--charcoal);
             margin-bottom: 0.25rem;
         }
-        
+
         .way-details p {
             font-size: 0.75rem;
             color: var(--forest-light);
         }
-        
+
         .contact-card {
             background-color: var(--forest);
             border-radius: var(--radius-xl);
             padding: var(--spacing-lg);
             color: var(--white);
         }
-        
+
         .contact-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             color: var(--white);
             margin-bottom: var(--spacing-sm);
         }
-        
+
         .contact-card p {
             color: rgba(255, 255, 255, 0.8);
             line-height: 1.6;
             margin-bottom: var(--spacing-lg);
+            font-size: 0.9375rem;
         }
-        
+
         .contact-stats {
             display: flex;
             flex-direction: column;
             gap: var(--spacing-md);
             margin-bottom: var(--spacing-lg);
         }
-        
+
         .contact-stat {
             display: flex;
             align-items: center;
             gap: var(--spacing-md);
         }
-        
+
         .contact-stat-icon {
             width: 48px;
             height: 48px;
@@ -871,51 +1547,53 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
-        
+
         .contact-stat-icon svg {
             width: 24px;
             height: 24px;
             color: var(--charcoal);
         }
-        
+
         /* Footer */
         footer {
             background-color: var(--charcoal);
             color: var(--white);
         }
-        
+
         .footer-content {
             padding: var(--spacing-2xl) var(--spacing-md);
         }
-        
+
         .footer-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: var(--spacing-2xl);
         }
-        
+
         .footer-brand {
             grid-column: 1 / -1;
         }
-        
+
         .footer-brand h3 {
             font-size: 1.25rem;
             margin-bottom: var(--spacing-sm);
         }
-        
+
         .footer-brand p {
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.6;
             margin-bottom: var(--spacing-md);
             max-width: 400px;
+            font-size: 0.9375rem;
         }
-        
+
         .social-icons {
             display: flex;
             gap: var(--spacing-sm);
         }
-        
+
         .social-icon {
             width: 40px;
             height: 40px;
@@ -926,46 +1604,46 @@
             justify-content: center;
             transition: background-color 0.3s ease;
         }
-        
+
         .social-icon:hover {
             background-color: var(--gold);
         }
-        
+
         .social-icon svg {
             width: 20px;
             height: 20px;
         }
-        
+
         .footer-links h4 {
             font-weight: 500;
             margin-bottom: var(--spacing-sm);
         }
-        
+
         .footer-links ul {
             list-style: none;
         }
-        
+
         .footer-links li {
             margin-bottom: var(--spacing-xs);
         }
-        
+
         .footer-links a {
             font-size: 0.875rem;
             color: rgba(255, 255, 255, 0.7);
             transition: color 0.3s ease;
         }
-        
+
         .footer-links a:hover {
             color: var(--gold);
         }
-        
+
         .footer-contact-item {
             display: flex;
             align-items: flex-start;
             gap: var(--spacing-sm);
             margin-bottom: var(--spacing-sm);
         }
-        
+
         .footer-contact-icon {
             width: 16px;
             height: 16px;
@@ -973,21 +1651,21 @@
             flex-shrink: 0;
             margin-top: 0.25rem;
         }
-        
+
         .footer-contact-text {
             font-size: 0.875rem;
             color: rgba(255, 255, 255, 0.7);
         }
-        
+
         .footer-contact-text a:hover {
             color: var(--gold);
         }
-        
+
         .footer-bottom {
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding: var(--spacing-md) var(--spacing-md);
         }
-        
+
         .footer-bottom-content {
             display: flex;
             flex-direction: column;
@@ -996,36 +1674,68 @@
             gap: var(--spacing-sm);
             font-size: 0.875rem;
             color: rgba(255, 255, 255, 0.5);
+            text-align: center;
         }
-        
+
         /* Responsive Styles */
+        @media (min-width: 640px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: var(--spacing-md);
+            }
+            
+            .approach-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .impact-items-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .ways-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (min-width: 768px) {
+            .logo img {
+                height: 60px;
+            }
+            
+            .hero {
+                margin-top: 80px;
+            }
+            
             .hero h1 {
-                font-size: 3rem;
+                font-size: 2.75rem;
             }
             
             .hero p {
-                font-size: 1.125rem;
+                font-size: 1rem;
             }
             
             .hero-grid {
                 flex-direction: row;
+                min-height: calc(100vh - 80px);
             }
             
             .hero-left {
                 width: 45%;
                 padding: var(--spacing-xl);
+                min-height: 0;
             }
             
             .hero-right {
                 width: 55%;
+                background-color: var(--forest);
                 min-height: 0;
                 padding: var(--spacing-lg);
             }
             
             .hero-image {
-                border-radius: 0;
-                max-height: none;
+                border-radius: var(--radius-md);
+                min-height: 0;
+                max-height: 70vh;
             }
             
             .decorative-circle {
@@ -1047,24 +1757,7 @@
             }
             
             .section-title {
-                font-size: 2.5rem;
-            }
-            
-            .stats-grid {
-                flex-wrap: nowrap;
-                gap: var(--spacing-md);
-            }
-            
-            .stat-item {
-                width: auto;
-            }
-            
-            .stat-number {
-                font-size: 1.75rem;
-            }
-            
-            .stat-label {
-                font-size: 0.875rem;
+                font-size: 2.25rem;
             }
             
             .about-grid,
@@ -1073,6 +1766,16 @@
                 grid-template-columns: repeat(2, 1fr);
                 align-items: center;
                 gap: var(--spacing-2xl);
+            }
+            
+            .about-image-container {
+                margin-top: 0;
+            }
+            
+            .year-badge {
+                bottom: -24px;
+                left: -24px;
+                transform: none;
             }
             
             .impact-grid {
@@ -1085,6 +1788,14 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
+            .response-image-container {
+                height: 300px;
+            }
+            
+            .response-content h3 {
+                font-size: 1.25rem;
+            }
+            
             .footer-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
@@ -1095,16 +1806,34 @@
             
             .footer-bottom-content {
                 flex-direction: row;
+                text-align: left;
             }
         }
-        
+
         @media (min-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.125rem;
+            }
+            
             .section {
                 padding: var(--spacing-2xl) var(--spacing-xl);
             }
             
             .services-grid {
                 grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .response-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: var(--spacing-lg);
+            }
+            
+            .response-image-container {
+                height: 220px;
             }
             
             .hero-left {
@@ -1115,6 +1844,48 @@
                 padding: var(--spacing-xl);
             }
         }
+
+        @media (min-width: 768px) {
+            .resources-grid
+            {
+                grid-template-columns: repeat(2, 1fr);
+            }
+             .activities-grid{
+                grid-template-columns: repeat(3, 1fr);
+             }
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: var(--spacing-xl) var(--spacing-md);
+            }
+            
+            .resource-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .activity-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .gallery-grid {
+                display: none;
+            }
+            
+            .gallery-carousel {
+                display: block;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .gallery-grid {
+                display: grid;
+            }
+            
+            .gallery-carousel {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1122,13 +1893,17 @@
     <header id="header">
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">LITD C.I.C</a>
+                <a href="#" class="logo">
+                    <img src="https://litdcic.com/wp-content/uploads/2026/02/LITD-logo.png" alt="LITD C.I.C Logo">
+                </a>
                 
                 <nav class="nav-desktop">
+                    <a href="index.html">Home</a>
                     <a href="about.html">About Us</a>
+                    <a href="teams.html">Our Team</a>
                     <a href="services.html">Services</a>
-                    <a href="#impact">Our Impact</a>
-                    <a href="#contact">Contact Us</a>
+                    <a href="events.html">Events</a>
+                    <a href="contact.html" class="active">Contact Us</a>
                 </nav>
                 
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -1137,10 +1912,12 @@
             </div>
             
             <nav class="nav-mobile hidden" id="mobileMenu">
-                <a href="#about">About Us</a>
-                <a href="#services">Services</a>
-                <a href="#impact">Our Impact</a>
-                <a href="#contact">Contact Us</a>
+                <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="teams.html">Our Team</a>
+                    <a href="services.html">Services</a>
+                    <a href="events.html">Events</a>
+                    <a href="contact.html" class="active">Contact Us</a>
             </nav>
         </div>
     </header>
@@ -1157,7 +1934,7 @@
                     <p>We support individuals, families, and communities through practical care, wellbeing services, and empowerment programmes that build resilience, restore hope, and create lasting positive change.</p>
                     
                     <div class="hero-buttons">
-                        <a href="#contact" class="btn-hero">Donate Now</a>
+                        <a href="https://donate.stripe.com/fZebK45Ni8OL0RWbII" class="btn-hero">Donate Now</a>
                         
                         <div class="play-button-container">
                             <div class="play-button">
@@ -1177,21 +1954,22 @@
                 </div>
                 
                 <div class="social-links">
-                    <a href="#youtube">Youtube</a>
+                    <a href="#linkedin">LinkedIn</a>
                     <a href="#facebook">Facebook</a>
-                    <a href="#instagram">Instagram</a>
+                    <a href="#tiktok">Tiktok</a>
+                    <a href="https://www.instagram.com/litd_cic?igsh=Z2dxOTUxZ2NvcmFv">Instagram</a>
                 </div>
             </div>
             
             <div class="hero-right">
-                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=900&fit=crop" alt="Diverse group of people hugging, showing community support" class="hero-image">
+                <img src="images/rearview-diverse-people-hugging-each-other.jpg" alt="Diverse group of people hugging, showing community support" class="hero-image">
             </div>
         </div>
     </section>
 
     <!-- Mission Banner -->
     <div class="mission-banner">
-        <p>LITD CIC delivers safeguarding-led support that helps vulnerable young people and displaced adults rebuild stability, develop independence, and integrate positively into their communities.</p>
+        <p>LITD CIC delivers safeguarding-led, high-performance programmes that empower young people and women through holistic, trauma-informed support and structured pathways into resilience, wellbeing, and positive adulthood outcomes.</p>
     </div>
 
     <!-- Stats Bar -->
@@ -1244,9 +2022,7 @@
                     <p class="section-subtitle">About Us</p>
                     <h2 class="section-title">Light In The Darkness (LITD C.I.C.)</h2>
                     
-                    <p class="about-text">Light In The Darkness is a Community Interest Company based in Greater Manchester, dedicated to bringing hope, practical support, and advocacy to society's most vulnerable individuals.</p>
-                    
-                    <p class="about-text">We work with marginalised families and individuals who struggle to access statutory services. Through personalised, compassionate interventions, we empower people facing hardship to regain stability, confidence, and independence.</p>
+                    <p class="about-text">LITD CIC delivers safeguarding-led, high-performance programmes that empower young people and women through holistic, trauma-informed support and structured pathways into resilience, wellbeing, and positive adulthood outcomes. Working strategically alongside statutory partners and community stakeholders, we design and implement targeted interventions that improve safety, strengthen families, and deliver measurable, long-term community impact.</p>
                     
                     <div class="approach-card">
                         <h3>Person-Centred and Strength-Based Approach</h3>
@@ -1310,7 +2086,7 @@
                 
                 <div class="about-image-container">
                     <div class="decorative-circle" style="width: 288px; height: 288px; top: -40px; right: -40px;"></div>
-                    <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&h=700&fit=crop" alt="Community support and care" class="about-image">
+                    <img src="https://litdcic.com/wp-content/uploads/2026/02/PHOTO-2025-09-16-11-52-24.jpg" alt="Community support and care" class="about-image">
                     <div class="year-badge">
                         <div class="number">2017</div>
                         <div class="label">Established</div>
@@ -1326,21 +2102,24 @@
             <div class="why-grid">
                 <div class="why-content">
                     <p class="section-subtitle">Why Our Work Matters</p>
-                    <h2 class="section-title">Bridging the Gap When Systems Fail</h2>
+                    <h2 class="section-title">Bridging Gaps Through Strategic Partnership</h2>
                     
-                    <p class="why-text">In an ideal system, statutory services would support individuals before they reach crisis point. In reality, many only receive help when they are already in severe distress.</p>
+                    <p class="why-text">  In an ideal system, individuals would receive timely, preventative support before challenges reach crisis point. However, many young people and families currently access services at a later stage, when needs have become more complex.</p>
                     
-                    <p class="why-text">Since 2017, we have witnessed systemic bias and institutional barriers within healthcare, education, social services, and the justice system. These failures disproportionately affect vulnerable communities and often go unchallenged.</p>
+                    <p class="why-text"> Since 2017, our frontline experience has provided valuable insight into the varied and sometimes 
+                        complex pathways across health, education, social care, and justice systems, particularly for vulnerable communities. 
+                        LITD CIC works collaboratively with statutory partners to strengthen these pathways through early intervention, 
+                        safeguarding-led support, and holistic programmes that promote resilience, stability, and positive life outcomes.</p>
                     
                     <div class="highlight-box">
-                        <p><strong>LITD exists to bridge this gap, advocate for fairness, and ensure dignity is upheld.</strong></p>
-                        <p style="font-size: 0.875rem; margin-top: 0.5rem;">When accountability is resisted, advocacy becomes essential. We stand alongside our beneficiaries to ensure they are treated fairly.</p>
+                        <p><strong>LITD CIC exists to bridge gaps in provision, champion fairness, and uphold dignity for young people and families facing complex challenges.</strong></p>
+                        <p style="font-size: 0.875rem; margin-top: 0.5rem;">We deliver safeguarding-led advocacy and holistic support, empowering individuals to navigate systems, access the right help at the right time, and build resilience through collaborative, solution-focused partnerships.</p>
                     </div>
                 </div>
                 
                 <div>
                     <h3 style="font-size: 1.25rem; margin-bottom: var(--spacing-lg);">The Reality on the Ground</h3>
-                    <p class="why-text">We regularly support individuals facing:</p>
+                    <p class="why-text">Many of the individuals we support face complex and deeply affecting challenges that often go unaddressed, impacting their safe transition from childhood into adulthood and their ongoing recovery as adults.</p>
                     
                     <div class="challenges-list">
                         <div class="challenge-item">
@@ -1359,17 +2138,7 @@
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                 </svg>
                             </div>
-                            <p class="challenge-text">Parents and children experiencing suicidal thoughts due to neglect</p>
-                        </div>
-                        
-                        <div class="challenge-item">
-                            <div class="challenge-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M3 9l9-7l9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                                </svg>
-                            </div>
-                            <p class="challenge-text">Families living in unsafe housing conditions</p>
+                            <p class="challenge-text">Parents, young people, and adults experiencing emotional distress and suicidal thoughts as a result of neglect or trauma</p>
                         </div>
                         
                         <div class="challenge-item">
@@ -1380,7 +2149,7 @@
                                     <line x1="12" y1="17" x2="12.01" y2="17"></line>
                                 </svg>
                             </div>
-                            <p class="challenge-text">Young people experiencing hate crimes without adequate intervention</p>
+                            <p class="challenge-text">Young people and adults affected by hate crimes, exploitation, or community safety risks without adequate intervention</p>
                         </div>
                         
                         <div class="challenge-item">
@@ -1391,13 +2160,217 @@
                                     <line x1="12" y1="17" x2="12.01" y2="17"></line>
                                 </svg>
                             </div>
-                            <p class="challenge-text">Individuals trapped in mental health crises within rigid systems</p>
+                            <p class="challenge-text">Individuals of all ages trapped in mental health crises within rigid systems</p>
+                        </div>
+                        
+                        <div class="challenge-item">
+                            <div class="challenge-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M3 9l9-7l9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                            </div>
+                            <p class="challenge-text">Adults and young people struggling to rebuild their lives and achieve stability after prolonged adversity</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- How LITD Responds Section -->
+    <section class="section" style="background-color: var(--off-white);">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">How LITD CIC Responds</p>
+                <h2 class="section-title">Safeguarding-Led, High-Performance Programmes</h2>
+                <p class="section-description">LITD CIC delivers safeguarding-led, high-performance programmes that support children, young people, adults, and families to build resilience, wellbeing, and positive life outcomes. Our work is trauma-informed, holistic, and evidence-based, helping individuals overcome challenges, regain stability, and connect to education, training, or work opportunities.</p>
+            </div>
+            
+            <div class="response-grid">
+                <div class="response-card">
+                    <div class="response-image-container">
+                        <img src="https://litdcic.com/wp-content/uploads/2026/02/LITD_Street-1.jpeg" alt="Breaking the Cycle Boys Programme" class="response-image">
+                    </div>
+                    <div class="response-content">
+                        <h3>Breaking the Cycle – Boys (13–25)</h3>
+                        <ul class="response-list">
+                            <li>Football, mentoring, and life skills programmes</li>
+                            <li>Focused on confidence, teamwork, discipline, and successful transition into adulthood</li>
+                            <li>Embeds safeguarding and trauma-informed practice to ensure safe, supportive environments</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="response-card">
+                    <div class="response-image-container">
+                        <img src="images/breaking_the_cycle.jpeg" alt="Breaking the Cycle Girls Programme" class="response-image">
+                    </div>
+                    <div class="response-content">
+                        <h3>Breaking the Cycle – Girls (13–25)</h3>
+                        <ul class="response-list">
+                            <li>Fitness, yoga, and dance programmes</li>
+                            <li>Designed to strengthen resilience, leadership, wellbeing, and self-confidence</li>
+                            <li>Promotes holistic recovery and empowerment in a safe and nurturing space</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="response-card">
+                    <div class="response-image-container">
+                        <img src="images/youthandadult.jpeg" alt="Youth and Adult Mentoring" class="response-image">
+                    </div>
+                    <div class="response-content">
+                        <h3>Youth & Adult Mentoring, Recovery, and Family Support</h3>
+                        <ul class="response-list">
+                            <li>One-to-one and group mentoring for young people and adults</li>
+                            <li>Support for families navigating safeguarding, mental health, and complex challenges</li>
+                            <li>Provides advocacy, guidance, and practical tools to help individuals rebuild stability, access opportunities, and achieve long-term growth</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: var(--spacing-xl); padding: var(--spacing-lg); background-color: var(--cream); border-radius: var(--radius-lg);">
+                <p style="font-size: 1rem; color: var(--charcoal); line-height: 1.6; max-width: 800px; margin: 0 auto;">Through all our programmes, LITD CIC combines trauma-informed practice, advocacy, and safeguarding-led support to ensure that individuals not only recover from adversity but thrive in their personal, educational, and professional lives.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Resources Section -->
+    <section class="section resources-section" id="resources">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Recognition, Impact & Milestones</p>
+                <h2 class="section-title">Awards & Recognition</h2>
+                <p class="section-description">Explore our guides, publications, and resources designed to support, educate, and empower our community.</p>
+            </div>
+            
+            <div class="resources-grid">
+                <!-- Resource 1 -->
+                <div class="resource-card" data-resource="resource1">
+                    <div class="resource-image">
+                        <img src="images/ceo.jpg" alt="Beatrice Guessie recognition">
+                    </div>
+                    <div class="resource-content">
+                        <div class="resource-category">Awards</div>
+                        <h3 class="resource-title">Beatrice Guessie Named Among Europe's 30 Most Influential Business Leaders</h3>
+                        <p class="resource-excerpt">Madrid, SPAIN – 31st May 2025 LITD C.I.C. is pleased to announce...</p>
+                        <button class="btn-read-more">Read More →</button>
+                    </div>
+                </div>
+                
+                <!-- Resource 2 -->
+                <div class="resource-card" data-resource="resource2">
+                    <div class="resource-image">
+                        <img src="https://litdcic.com/wp-content/uploads/2026/02/PHOTO-2025-08-26-09-22-53-1.jpg" alt="Hair wrapping at Gorton's Culture Festival">
+                    </div>
+                    <div class="resource-content">
+                        <div class="resource-category">Awards</div>
+                        <h3 class="resource-title">LITD C.I.C. Showcased Holistic Hair Wrapping at Gorton's Culture Festival</h3>
+                        <p class="resource-excerpt">Manchester, UK – October 2025 On Saturday, 13th September 2025, LITD C.I.C....</p>
+                        <button class="btn-read-more">Read More →</button>
+                    </div>
+                </div>
+                
+                <!-- Resource 3 -->
+                <!-- <div class="resource-card" data-resource="resource3">
+                    <div class="resource-image">
+                        <img src="https://litdcic.com/wp-content/uploads/2026/02/PHOTO-2025-09-16-11-52-24-1-150x150-1.jpg" alt="Empowering women for the future">
+                    </div>
+                    <div class="resource-content">
+                        <div class="resource-category">Awards</div>
+                        <h3 class="resource-title">How To Empower Women For The Future</h3>
+                        <p class="resource-excerpt">To empower women for the future is an essential effort for the...</p>
+                        <button class="btn-read-more">Read More →</button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Resource Popup Modal -->
+    <div class="modal-overlay" id="resourceModal">
+        <div class="modal-container resource-modal">
+            <button class="modal-close" id="closeResourceModal">&times;</button>
+            <div class="modal-content" id="resourceModalContent">
+                <!-- Resource content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Activities/Events Section -->
+    <section class="section activities-section" id="activities">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Activities & Events</p>
+                <h2 class="section-title">Community Events & Initiatives</h2>
+                <p class="section-description">Explore our community events, initiatives, and activities designed to empower, unite, and uplift individuals and families across the UK.</p>
+            </div>
+            
+            <div class="activities-grid">
+                <!-- Activity 1 -->
+                <div class="activity-card" data-activity="activity1">
+                    <div class="activity-image">
+                        <img src="images/womensday.jpeg" alt="International Tameside Women's Day">
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-category">Activities / Events</div>
+                        <div class="activity-date">March 8, 2025</div>
+                        <h3 class="activity-title">International Tameside Women's Day</h3>
+                        <p class="activity-excerpt">Light In The Darkness present</p>
+                        <button class="btn-learn-more">Learn More →</button>
+                    </div>
+                </div>
+                
+                <!-- Activity 2 -->
+                <div class="activity-card" data-activity="activity2">
+                    <div class="activity-image">
+                        <img src="https://litdcic.com/wp-content/uploads/2026/02/banner-event-08-march-1024x351-1.jpg" alt="A Message of Resilience">
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-category">Activities / Events</div>
+                        <div class="activity-date">January 23, 2025</div>
+                        <h3 class="activity-title">A Message of Resilience, Hope, Equality, and Togetherness</h3>
+                        <p class="activity-excerpt">Speaking at the Tameside Event</p>
+                        <button class="btn-learn-more">Learn More →</button>
+                    </div>
+                </div>
+                
+                <!-- Activity 3 -->
+                <div class="activity-card" data-activity="activity3">
+                    <div class="activity-image">
+                        <img src="https://litdcic.com/wp-content/uploads/2026/02/IMG_5813.jpeg" alt="Our 2025 Initiatives in Oldham">
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-category">Activities / Events</div>
+                        <div class="activity-date">January 10, 2025</div>
+                        <h3 class="activity-title">Our 2025 Initiatives in Oldham</h3>
+                        <p class="activity-excerpt">Strengthening Youth Engagement</p>
+                        <button class="btn-learn-more">Learn More →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View All Events Button -->
+            <div style="text-align: center; margin-top: var(--spacing-xl);">
+                <a href="events.html" class="btn-view-events">
+                    View All Events
+                    <i class="fas fa-arrow-right" style="margin-left: 0.5rem; font-size: 0.875rem;"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activity Popup Modal -->
+    <div class="modal-overlay" id="activityModal">
+        <div class="modal-container activity-modal">
+            <button class="modal-close" id="closeActivityModal">&times;</button>
+            <div class="modal-content" id="activityModalContent">
+                <!-- Activity content will be loaded here -->
+            </div>
+        </div>
+    </div>
 
     <!-- Services Section -->
     <section class="section services-section" id="services">
@@ -1587,10 +2560,53 @@
                     </div>
                 </div>
                 
-                <!-- Service 5 -->
+                <!-- Service 5 - NEW: Advocacy and Mentorship -->
                 <div class="service-card">
                     <div class="service-header gold">
                         <div class="service-icon gold">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="service-body">
+                        <h3>Advocacy and Mentorship</h3>
+                        <p class="service-description">Every individual deserves a voice and a guide. Our advocacy services ensure fair treatment when navigating complex systems.</p>
+                        
+                        <ul class="features-list">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Support navigating education systems
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Social services advocacy
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Mentorship programmes
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                                Life skills development
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card">
+                    <div class="service-header green">
+                        <div class="service-icon green">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 2h7c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2z"></path>
                                 <path d="M14 2h7c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2h-7c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2z"></path>
@@ -1643,7 +2659,7 @@
                         <path d="M75,25 L80,30 L75,35" stroke-linecap="round" stroke-linejoin="round"></path>
                     </svg>
                     
-                    <a href="#contact" class="btn-gold">Give Gift Now</a>
+                    <a href="https://donate.stripe.com/fZebK45Ni8OL0RWbII" class="btn-gold">Give Gift Now</a>
                 </div>
             </div>
         </div>
@@ -1822,7 +2838,7 @@
                         </div>
                     </div>
                     
-                    <a href="mailto:contact@litdcic.org" class="btn-hero" style="display: inline-block; margin-top: var(--spacing-md);">Contact Us Today</a>
+                    <a href="https://litdcic.com/contact/" class="btn-hero" style="display: inline-block; margin-top: var(--spacing-md);">Contact Us Today</a>
                 </div>
                 
                 <div class="contact-card">
@@ -1859,7 +2875,7 @@
                         </div>
                     </div>
                     
-                    <a href="mailto:contact@litdcic.org" class="btn-gold" style="width: 100%; text-align: center; display: block;">Donate Now</a>
+                    <a href="https://donate.stripe.com/fZebK45Ni8OL0RWbII" class="btn-gold" style="width: 100%; text-align: center; display: block;">Donate Now</a>
                 </div>
             </div>
         </div>
@@ -1888,7 +2904,7 @@
                                 </svg>
                             </a>
                             
-                            <a href="#instagram" class="social-icon">
+                            <a href="https://www.instagram.com/litd_cic?igsh=Z2dxOTUxZ2NvcmFv" class="social-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                                     <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -1901,10 +2917,11 @@
                     <div class="footer-links">
                         <h4>Quick Links</h4>
                         <ul>
-                            <li><a href="#about">About Us</a></li>
-                            <li><a href="#services">Our Services</a></li>
-                            <li><a href="#impact">Our Impact</a></li>
-                            <li><a href="#contact">Get Involved</a></li>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/about">About Us</a></li>
+                            <li><a href="/team">Our Team</a></li>
+                            <li><a href="/services">Our Services</a></li>
+                            <li><a href="https://litdcic.com/contact/">Get Involved</a></li>
                         </ul>
                     </div>
                     
@@ -2008,6 +3025,548 @@
                     });
                 }
             });
+        });
+        
+        // Resource data
+        const resourceData = {
+            resource1: {
+                category: "AWARDS",
+                title: "Beatrice Guessie Named Among Europe's 30 Most Influential Business Leaders",
+                date: "May 31, 2025",
+                location: "Madrid, SPAIN",
+                content: `<p><strong>Madrid, SPAIN – 31st May 2025</strong> – LITD C.I.C. is pleased to announce that our founder and director, Beatrice Guessie, has been recognised as one of Europe's 30 Most Influential Business Leaders by the European Business Leadership Forum. This prestigious honour celebrates her outstanding contributions to social entrepreneurship and community development across Europe.</p>
+                    
+                    <h3>A Visionary Leader in Social Impact</h3>
+                    <p>Beatrice Guessie's journey from community activist to recognised business leader is a testament to her unwavering commitment to creating positive change. Under her leadership, LITD C.I.C. has grown from a local community initiative to an organisation with national and international impact, supporting thousands of individuals and families through innovative, trauma-informed programmes.</p>
+                    
+                    <p>Her inclusion on this esteemed list places her alongside some of Europe's most prominent business innovators and social entrepreneurs, highlighting the growing recognition of social enterprises as powerful drivers of economic and social progress.</p>
+                    
+                    <h3>Impact and Recognition</h3>
+                    <p>The selection criteria for this honour included:</p>
+                    <ul>
+                        <li>Sustainable business growth and innovation</li>
+                        <li>Positive social.</li>
+                        <li>Leadership in sector development</li>
+                        <li>Influence on policy and practice</li>
+                        <li>Commitment to diversity, equity, and inclusion</li>
+                    </ul>
+                    
+                    <p>Beatrice's work with LITD C.I.C. has been particularly noted for its innovative approach to bridging gaps in social services, her advocacy for trauma-informed practice, and her dedication to empowering young people and women from marginalised communities.</p>
+                    
+                    <h3>Looking Forward</h3>
+                    <p>This recognition comes at an exciting time for LITD C.I.C., as we expand our programmes across the UK and begin exploring international partnerships. Beatrice's leadership continues to inspire our team and the communities we serve.</p>
+                    
+                    <p>"This honour is not just for me, but for our entire team and the communities we serve," said Beatrice Guessie. "It validates the importance of the work we do and strengthens our resolve to continue creating meaningful, lasting change."</p>`,
+                images: [
+                    "https://litdcic.com/wp-content/uploads/2026/02/PHOTO-2025-09-16-11-51-18-1-150x150-1.jpg",
+                    "https://litdcic.com/wp-content/uploads/2026/02/PHOTO-2025-09-16-11-52-24-1-150x150-1.jpg",
+                    "https://litdcic.com/wp-content/uploads/2026/02/PHOTO-2025-09-16-11-51-18.jpg"
+                ]
+            },
+            resource2: {
+                category: "AWARDS",
+                title: "LITD C.I.C. Showcased Holistic Hair Wrapping at Gorton's Culture Festival",
+                date: "October 2025",
+                location: "Manchester, UK",
+                content: `<p><strong>Manchester, UK – October 2025</strong> – On Saturday, 13th September 2025, LITD C.I.C. proudly showcased the art and cultural significance of holistic hair wrapping at Gorton's annual Culture Festival, drawing enthusiastic crowds and highlighting this traditional practice as both cultural heritage and therapeutic art form.</p>
+                    
+                    <h3>Celebrating Cultural Heritage</h3>
+                    <p>Our interactive hair wrapping demonstration became one of the festival's most popular attractions, with visitors queuing to learn about the history, techniques, and meanings behind different wrapping styles. Our team, led by cultural heritage specialists and trained practitioners, demonstrated various traditional wrapping methods from African, Caribbean, and South Asian cultures.</p>
+                    
+                    <p>The demonstration emphasised hair wrapping as more than just a beauty practice—it's a centuries-old tradition with deep cultural, spiritual, and practical significance.</p>
+                    
+                    <h3>Therapeutic Benefits</h3>
+                    <p>Beyond its cultural importance, we highlighted the therapeutic aspects of hair wrapping:</p>
+                    
+                    <ul>
+                        <li><strong>Mindfulness Practice:</strong> The rhythmic, focused nature of hair wrapping promotes mindfulness and stress reduction</li>
+                        <li><strong>Self-Care Ritual:</strong> Creating time for self-care and self-expression</li>
+                        <li><strong>Community Connection:</strong> Traditional hair wrapping is often a communal activity that builds social bonds</li>
+                        <li><strong>Cultural Identity:</strong> Maintaining connection to heritage and tradition</li>
+                    </ul>
+                    
+                    <h3>Workshop Success</h3>
+                    <p>Throughout the day, we conducted mini-workshops where participants could:</p>
+                    
+                    <ol>
+                        <li>Learn basic wrapping techniques</li>
+                        <li>Discover the cultural significance of different fabrics and patterns</li>
+                        <li>Understand the practical benefits for hair health and protection</li>
+                        <li>Create their own simple wraps with guidance from our experts</li>
+                    </ol>
+                    
+                    <p>The festival provided an ideal platform to demonstrate how traditional practices can be integrated into modern wellness approaches, particularly for communities seeking culturally relevant forms of self-care and cultural preservation.</p>
+                    
+                    <h3>Community Response</h3>
+                    <p>The overwhelmingly positive response from festival attendees has inspired us to develop regular hair wrapping workshops as part of our women's empowerment and cultural preservation programmes. Many participants expressed appreciation for seeing their cultural traditions celebrated and validated in public spaces.</p>
+                    
+                    <p>"This isn't just about hair—it's about reclaiming our stories, our practices, and our healing traditions," explained one of our workshop leaders. "Every wrap tells a story, carries intention, and connects us to generations of knowledge."</p>`,
+                images: [
+                    "https://litdcic.com/wp-content/uploads/2026/02/PHOTO-2025-08-26-09-22-53-1.jpg",
+                    "https://litdcic.com/wp-content/uploads/2026/02/PHOTO-2025-09-13-07-09-25-2.jpg"
+                ]
+            },
+            resource3: {
+                category: "AWARDS",
+                title: "How To Empower Women For The Future",
+                date: "2025",
+                location: "UK",
+                content: `<p>Empowering women for the future is an essential effort for building resilient, equitable, and thriving communities. At LITD C.I.C., we believe that women's empowerment is not a single initiative but a comprehensive approach that addresses multiple dimensions of women's lives.</p>
+                    
+                    <h3>Our Holistic Framework for Women's Empowerment</h3>
+                    
+                    <h4>1. Economic Empowerment</h4>
+                    <p>Creating sustainable pathways to financial independence:</p>
+                    <ul>
+                        <li><strong>Entrepreneurship Training:</strong> 6-month programmes for women to develop business ideas</li>
+                        <li><strong>Digital Skills:</strong> Bridging the digital divide with practical technology training</li>
+                        <li><strong>Financial Literacy:</strong> Budgeting, saving, and financial planning workshops</li>
+                        <li><strong>Micro-enterprise Support:</strong> Guidance for small business development</li>
+                    </ul>
+                    
+                    <h4>2. Education and Skills Development</h4>
+                    <p>Breaking barriers to education and lifelong learning:</p>
+                    <ul>
+                        <li><strong>Adult Education:</strong> Access to formal education and qualifications</li>
+                        <li><strong>Vocational Training:</strong> Skills training in growing sectors</li>
+                        <li><strong>Leadership Development:</strong> Building confidence and leadership capabilities</li>
+                        <li><strong>Mentorship Programmes:</strong> Connecting women with role models and mentors</li>
+                    </ul>
+                    
+                    <h4>3. Health and Wellbeing</h4>
+                    <p>Supporting physical, mental, and emotional health:</p>
+                    <ul>
+                        <li><strong>Mental Health Support:</strong> Trauma-informed counselling and therapy</li>
+                        <li><strong>Physical Health:</strong> Access to healthcare and wellness activities</li>
+                        <li><strong>Holistic Therapies:</strong> Yoga, meditation, and culturally relevant healing practices</li>
+                        <li><strong>Reproductive Health Education:</strong> Comprehensive health information and support</li>
+                    </ul>
+                    
+                    <h4>4. Social and Community Support</h4>
+                    <p>Building networks and breaking isolation:</p>
+                    <ul>
+                        <li><strong>Support Groups:</strong> Safe spaces for sharing experiences and challenges</li>
+                        <li><strong>Community Building:</strong> Creating connections between women from diverse backgrounds</li>
+                        <li><strong>Advocacy Training:</strong> Empowering women to advocate for themselves and their communities</li>
+                        <li><strong>Cultural Preservation:</strong> Honouring and maintaining cultural traditions and knowledge</li>
+                    </ul>
+                    
+                    <h3>Our Impact Approach</h3>
+                    <p>We employ a multi-layered approach to ensure sustainable empowerment:</p>
+                    
+                    <ol>
+                        <li><strong>Individual Level:</strong> Building personal capacity, confidence, and skills</li>
+                        <li><strong>Relational Level:</strong> Strengthening family and social relationships</li>
+                        <li><strong>Community Level:</strong> Creating supportive community networks</li>
+                        <li><strong>Structural Level:</strong> Addressing systemic barriers and advocating for policy change</li>
+                    </ol>
+                    
+                    <h3>Success Stories</h3>
+                    <p>Our programmes have already helped hundreds of women to:</p>
+                    <ul>
+                        <li>Start and grow their own businesses</li>
+                        <li>Access higher education and training</li>
+                        <li>Develop leadership roles in their communities</li>
+                        <li>Improve their mental and physical health</li>
+                        <li>Build supportive networks and break cycles of isolation</li>
+                    </ul>
+                    
+                    <p>Empowering women creates a ripple effect that benefits families, communities, and society as a whole. When women thrive, communities thrive.</p>`,
+                images: []
+            }
+        };
+
+        // Declare currentSlide variable
+        let currentSlide = 0;
+
+        // Function to render gallery
+        function renderGallery(images) {
+            if (!images || images.length === 0) {
+                return '';
+            }
+
+            if (images.length === 1) {
+                return `
+                    <div class="resource-gallery">
+                        <h3>Gallery</h3>
+                        <div class="gallery-grid">
+                            <div class="gallery-item">
+                                <img src="${images[0]}" alt="Gallery image">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // For multiple images, create carousel
+            const dotsHTML = images.map((_, index) => 
+                `<button class="carousel-dot ${index === 0 ? 'active' : ''}" data-index="${index}"></button>`
+            ).join('');
+
+            const slidesHTML = images.map(img => 
+                `<div class="carousel-slide">
+                    <img src="${img}" alt="Gallery image">
+                </div>`
+            ).join('');
+
+            return `
+                <div class="resource-gallery">
+                    <h3>Gallery</h3>
+                    <div class="gallery-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-track">
+                                ${slidesHTML}
+                            </div>
+                        </div>
+                        <button class="carousel-btn prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="carousel-btn next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="carousel-dots">
+                            ${dotsHTML}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Carousel functions
+        function initCarousel() {
+            const track = document.querySelector('.carousel-track');
+            const slides = document.querySelectorAll('.carousel-slide');
+            const dots = document.querySelectorAll('.carousel-dot');
+            const prevBtn = document.querySelector('.carousel-btn.prev');
+            const nextBtn = document.querySelector('.carousel-btn.next');
+            
+            if (!track || slides.length === 0) return;
+            
+            // Reset currentSlide
+            currentSlide = 0;
+            
+            function goToSlide(index) {
+                currentSlide = index;
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Update dots
+                dots.forEach(dot => dot.classList.remove('active'));
+                if (dots[currentSlide]) {
+                    dots[currentSlide].classList.add('active');
+                }
+            }
+            
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                goToSlide(currentSlide);
+            }
+            
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                goToSlide(currentSlide);
+            }
+            
+            // Event listeners
+            if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+            if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+            
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const index = parseInt(this.dataset.index);
+                    goToSlide(index);
+                });
+            });
+            
+            // Auto-advance carousel
+            let slideInterval = setInterval(nextSlide, 5000);
+            
+            // Pause on hover
+            const carousel = document.querySelector('.gallery-carousel');
+            if (carousel) {
+                carousel.addEventListener('mouseenter', () => clearInterval(slideInterval));
+                carousel.addEventListener('mouseleave', () => {
+                    slideInterval = setInterval(nextSlide, 5000);
+                });
+            }
+        }
+
+        // Resource modal elements
+        const resourceModal = document.getElementById('resourceModal');
+        const resourceModalContent = document.getElementById('resourceModalContent');
+        const closeResourceModal = document.getElementById('closeResourceModal');
+        const readMoreButtons = document.querySelectorAll('.btn-read-more');
+        const resourceCards = document.querySelectorAll('.resource-card');
+
+        // Function to open resource modal
+        function openResourceModal(resourceId) {
+            const resource = resourceData[resourceId];
+            
+            const modalHTML = `
+                <div class="resource-header">
+                    <div class="resource-category-large">${resource.category}</div>
+                    <h2>${resource.title}</h2>
+                    <div class="resource-meta">
+                        <div class="resource-date">
+                            <i class="far fa-calendar"></i>
+                            <span>${resource.date}</span>
+                        </div>
+                        <div class="resource-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${resource.location}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="resource-content">
+                    ${resource.content}
+                </div>
+                ${renderGallery(resource.images)}
+            `;
+            
+            resourceModalContent.innerHTML = modalHTML;
+            resourceModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Initialize carousel if images exist
+            if (resource.images && resource.images.length > 1) {
+                // Small delay to ensure DOM is ready
+                setTimeout(() => {
+                    initCarousel();
+                }, 100);
+            }
+            
+            // Scroll to top of modal
+            resourceModalContent.scrollTop = 0;
+        }
+
+        // Function to close resource modal
+        function closeResourceModalHandler() {
+            resourceModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event listeners for opening resource modal
+        readMoreButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const card = this.closest('.resource-card');
+                const resourceId = card.dataset.resource;
+                openResourceModal(resourceId);
+            });
+        });
+
+        resourceCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const resourceId = this.dataset.resource;
+                openResourceModal(resourceId);
+            });
+        });
+
+        // Close resource modal listeners
+        closeResourceModal.addEventListener('click', closeResourceModalHandler);
+        resourceModal.addEventListener('click', function(e) {
+            if (e.target === resourceModal) {
+                closeResourceModalHandler();
+            }
+        });
+
+        // Close resource modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && resourceModal.style.display === 'flex') {
+                closeResourceModalHandler();
+            }
+        });
+
+        // Activity data
+        const activityData = {
+            activity1: {
+                category: "Activities / Events",
+                title: "International Tameside Women's Day",
+                date: "March 8, 2025",
+                time: "2:30 pm",
+                location: "Holy Trinity Church & Community Centre, Dean Street, Ashton-Under-Lyne, OL6 7HD",
+                content: `<p>On March 8, 2025, the Holy Trinity Church & Community Centre in Ashton-Under-Lyne became a beacon of hope and empowerment as it hosted the International Tameside Women's Day event, organised by Light In The Darkness. This remarkable event was dedicated to celebrating the resilience and strength of women who have faced significant challenges in their lives.</p>
+                    
+                    <p>The evening commenced at 2:30 PM, welcoming attendees from various backgrounds to honour and uplift women who have demonstrated extraordinary courage in the face of adversity. The event aimed to recognise and pamper deserving women, offering them a special day filled with care and appreciation.</p>
+                    
+                    <h3>A Day of Pampering and Recognition</h3>
+                    <p>One of the highlights of the event was the initiative to nominate incredible women for a luxurious day of pampering. These women, nominated by their loved ones and communities, were treated to a full makeover, including clothing, hairstyling, makeup, and a professional photo shoot. The initiative focused on women who had shown resilience in overcoming hardships such as domestic abuse, widowhood, caregiving, asylum-seeking, and battling for child custody.</p>
+                    
+                    <p>The atmosphere at the event was one of unity, support, and celebration. As the selected women arrived, they were met with warmth and encouragement. Volunteers and professionals dedicated their time and expertise to ensuring that each woman felt valued, beautiful, and celebrated.</p>
+                    
+                    <h3>Nominate a Deserving Woman</h3>
+                    <p>Do you know a woman who has shown incredible strength in the face of hardship? Light In The Darkness invites you to nominate an extraordinary woman in your life for a day of well-deserved pampering and recognition.</p>
+                    
+                    <p>Selected nominees will receive a luxurious experience, including professional hairstyling, makeup, clothing, and a personal photo shoot. This initiative is designed to honour women who have demonstrated remarkable resilience while facing challenges such as:</p>
+                    
+                    <ul>
+                        <li>Surviving domestic abuse</li>
+                        <li>Seeking asylum and rebuilding their lives</li>
+                        <li>Overcoming the loss of a spouse</li>
+                        <li>Balancing the demands of caregiving</li>
+                        <li>Fighting for child custody and family stability</li>
+                    </ul>
+                    
+                    <p>By nominating a deserving woman, you can help bring joy, confidence, and a renewed sense of self-worth to someone who truly deserves it. Together, we can shine a light on their strength and celebrate their perseverance.</p>
+                    
+                    <h3>Stories of Strength and Courage</h3>
+                    <p>Throughout the evening, attendees shared inspiring stories of perseverance, shedding light on the struggles and triumphs of these incredible women. Their narratives served as a testament to the power of resilience and the importance of community support in overcoming life's challenges.</p>
+                    
+                    <p>One attendee, a mother who had been fighting for custody of her children, expressed her gratitude for the recognition and the opportunity to feel seen and appreciated. Another participant, a former asylum seeker, shared how the event gave her a renewed sense of belonging and hope for the future.</p>
+                    
+                    <h3>Community Support and Impact</h3>
+                    <p>Light In The Darkness successfully created an event that not only celebrated these remarkable women but also raised awareness about the struggles many face in silence. The event underscored the importance of support networks and community-driven initiatives in empowering women to reclaim their strength and dignity.</p>
+                    
+                    <p>The event was further honoured by the presence of over 12 councillors from Tameside, Oldham, Ashton-Under-Lyne, and Moston. Their attendance highlighted the significance of the occasion and reinforced the commitment of local leaders to supporting and uplifting women in need.</p>
+                    
+                    <p>As the evening concluded, the smiles, tears of joy, and words of gratitude were a clear indication of the event's profound impact. International Tameside Women's Day 2025 was more than just a day of pampering—it was a moment of recognition, healing, and empowerment for women who truly deserved it.</p>
+                    
+                    <p>The success of the event highlighted the need for continuous efforts in supporting and uplifting women facing adversity. With initiatives like these, Light In The Darkness continues to shine a path towards hope, resilience, and transformation.</p>`,
+                images: []
+            },
+            activity2: {
+                category: "Activities / Events",
+                title: "A Message of Resilience, Hope, Equality, and Togetherness",
+                date: "January 23, 2025",
+                time: "10:00 am",
+                location: "Tameside",
+                content: `<p>On January 23, 2025, I had the honour of speaking at the Tameside event, an occasion that brought together individuals committed to building a stronger, more united community. I was invited by Cllr Tafheen Sharif, whose dedication to inclusivity and positive change continues to inspire many.</p>
+                    
+                    <p>In my speech, I focused on four key themes: resilience, hope, equality, and togetherness. I emphasised the importance of resilience in overcoming life's challenges, the power of hope in driving us forward, and the necessity of equality in fostering a just society. Most importantly, I highlighted how togetherness strengthens our communities, reminding us that when we stand united, we can achieve meaningful progress.</p>
+                    
+                    <h3>Resilience in the Face of Adversity</h3>
+                    <p>Resilience is not just about bouncing back from hardship—it's about growing through it. In our communities, we witness daily examples of individuals who refuse to be defined by their circumstances. Whether facing economic challenges, social barriers, or personal struggles, resilient individuals find ways to move forward with determination and grace.</p>
+                    
+                    <h3>The Power of Hope</h3>
+                    <p>Hope is the light that guides us through our darkest moments. It is the belief that tomorrow can be better than today, and that our efforts towards positive change are never in vain. Hope drives us to continue working towards our goals, even when the path seems uncertain.</p>
+                    
+                    <h3>Equality as a Foundation</h3>
+                    <p>True progress cannot be achieved without equality. We must ensure that every individual, regardless of their background, has access to opportunities, resources, and support. Equality is not just a moral imperative—it is essential for building strong, sustainable communities where everyone can thrive.</p>
+                    
+                    <h3>Togetherness: Our Greatest Strength</h3>
+                    <p>When we come together, we multiply our impact. Togetherness means recognising that we are stronger as a collective than we are as individuals. It means supporting one another, sharing resources, and working collaboratively towards common goals.</p>
+                    
+                    <p>It was a privilege to share these thoughts with such an engaged audience. The event reinforced the idea that when we uplift one another, we create a future rooted in compassion, fairness, and shared strength.</p>`,
+                images: []
+            },
+            activity3: {
+                category: "Activities / Events",
+                title: "Our 2025 Initiatives in Oldham",
+                date: "January 10, 2025",
+                time: "12:00 am",
+                location: "Oldham",
+                content: `<p>In January 2025, we were honoured to be invited by the Council of Oldham to discuss our upcoming activities focused on children and youth. This meeting provided an invaluable opportunity to align our initiatives with the needs of the community, ensuring that young people receive the support and opportunities they deserve.</p>
+                    
+                    <h3>A New Partnership for Youth Empowerment</h3>
+                    <p>A key highlight of our collaboration is the role of Cllr Shaid Mushtaq, who serves as the Ambassador of our Youth. His dedication and leadership will be instrumental in driving positive change, fostering engagement, and creating a nurturing environment for young individuals to thrive.</p>
+                    
+                    <p>This partnership represents a significant step forward in our commitment to youth development. By working directly with local government, we can ensure that our programmes are well-coordinated, properly resourced, and aligned with broader community development strategies.</p>
+                    
+                    <h3>Our Focus Areas for 2025</h3>
+                    <p>Our initiatives in Oldham will focus on several key areas:</p>
+                    
+                    <ul>
+                        <li><strong>Education Support:</strong> Providing tutoring, mentorship, and academic resources to help young people reach their full potential</li>
+                        <li><strong>Skills Development:</strong> Offering workshops and training in digital skills, leadership, and entrepreneurship</li>
+                        <li><strong>Mental Health and Wellbeing:</strong> Creating safe spaces for young people to discuss challenges and access support</li>
+                        <li><strong>Community Engagement:</strong> Encouraging youth participation in community projects and civic activities</li>
+                        <li><strong>Sports and Recreation:</strong> Expanding our Breaking the Cycle programmes to reach more young people in Oldham</li>
+                    </ul>
+                    
+                    <h3>Building a Brighter Future</h3>
+                    <p>As we move forward in 2025, our commitment remains strong in empowering children through education, mentorship, and community programmes. We look forward to working hand in hand with local leaders and stakeholders to build a brighter future for the next generation.</p>
+                    
+                    <p>Young people are not just the future—they are the present. By investing in their development today, we create stronger, more resilient communities for tomorrow. Through collaboration, dedication, and a shared vision, we can ensure that every young person in Oldham has the opportunity to succeed.</p>`,
+                images: []
+            }
+        };
+
+        // Activity modal elements
+        const activityModal = document.getElementById('activityModal');
+        const activityModalContent = document.getElementById('activityModalContent');
+        const closeActivityModal = document.getElementById('closeActivityModal');
+        const learnMoreButtons = document.querySelectorAll('.btn-learn-more');
+        const activityCards = document.querySelectorAll('.activity-card');
+
+        // Function to open activity modal
+        function openActivityModal(activityId) {
+            const activity = activityData[activityId];
+            
+            const modalHTML = `
+                <div class="activity-header">
+                    <div class="activity-category-large">${activity.category}</div>
+                    <h2>${activity.title}</h2>
+                    <div class="activity-meta">
+                        <div class="activity-date-large">
+                            <i class="far fa-calendar"></i>
+                            <span>${activity.date}</span>
+                        </div>
+                        <div class="activity-time">
+                            <i class="far fa-clock"></i>
+                            <span>${activity.time}</span>
+                        </div>
+                        <div class="activity-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${activity.location}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="activity-content-text">
+                    ${activity.content}
+                </div>
+                ${activity.images && activity.images.length > 0 ? renderGallery(activity.images) : ''}
+            `;
+            
+            activityModalContent.innerHTML = modalHTML;
+            activityModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Initialize carousel if images exist
+            if (activity.images && activity.images.length > 1) {
+                setTimeout(() => {
+                    initCarousel();
+                }, 100);
+            }
+            
+            // Scroll to top of modal
+            activityModalContent.scrollTop = 0;
+        }
+
+        // Function to close activity modal
+        function closeActivityModalHandler() {
+            activityModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event listeners for opening activity modal
+        learnMoreButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const card = this.closest('.activity-card');
+                const activityId = card.dataset.activity;
+                openActivityModal(activityId);
+            });
+        });
+
+        activityCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const activityId = this.dataset.activity;
+                openActivityModal(activityId);
+            });
+        });
+
+        // Close activity modal listeners
+        closeActivityModal.addEventListener('click', closeActivityModalHandler);
+        activityModal.addEventListener('click', function(e) {
+            if (e.target === activityModal) {
+                closeActivityModalHandler();
+            }
+        });
+
+        // Close activity modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && activityModal.style.display === 'flex') {
+                closeActivityModalHandler();
+            }
         });
     </script>
 </body>
